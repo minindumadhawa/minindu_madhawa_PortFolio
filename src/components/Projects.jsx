@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
-import { FolderGit2, ExternalLink, Eye, Sparkles } from 'lucide-react';
+import { FolderGit2, ExternalLink, Eye, Sparkles, ArrowRight } from 'lucide-react';
 import { Github } from './SocialIcons';
 import { projectsData } from '../data/portfolioData';
 import ProjectModal from './ProjectModal';
 import DesktopMockup from './DesktopMockup';
 
-export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('All');
+export default function Projects({ onViewAllProjects }) {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const categories = ['All', 'Full Stack', 'Frontend'];
-
-  const filteredProjects = activeFilter === 'All' 
-    ? projectsData 
-    : projectsData.filter((p) => p.category.toLowerCase() === activeFilter.toLowerCase());
+  // Display top 3 main projects on the Home Page
+  const featuredProjects = projectsData.slice(0, 3);
 
   return (
     <section id="projects" className="section projects-section">
@@ -23,26 +19,13 @@ export default function Projects() {
             <FolderGit2 size={16} />
             <span>Featured Work</span>
           </div>
-          <h2>Explore My <span className="gradient-text">Recent Projects</span></h2>
-          <p>A selection of web applications, platforms, and interactive software products.</p>
+          <h2>Explore My <span className="gradient-text">Featured Projects</span></h2>
+          <p>A selection of main web applications, platforms, and software products.</p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="project-filters">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveFilter(cat)}
-              className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
+        {/* Projects Grid (Main 3 Projects) */}
         <div className="projects-grid">
-          {filteredProjects.map((project) => (
+          {featuredProjects.map((project) => (
             <div key={project.id} className="glass-card project-card">
               {/* Desktop Mockup Preview */}
               <DesktopMockup
@@ -52,7 +35,7 @@ export default function Projects() {
                 category={project.category}
               >
                 <div className="project-img-overlay">
-                  <button 
+                  <button
                     onClick={() => setSelectedProject(project)}
                     className="overlay-view-btn btn btn-primary"
                   >
@@ -79,7 +62,7 @@ export default function Projects() {
 
                 {/* Bottom Card Footer */}
                 <div className="project-card-footer">
-                  <button 
+                  <button
                     onClick={() => setSelectedProject(project)}
                     className="details-link"
                   >
@@ -98,6 +81,14 @@ export default function Projects() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View All Projects CTA */}
+        <div className="view-all-projects-wrapper">
+          <button onClick={onViewAllProjects} className="btn btn-primary view-all-btn">
+            <span>View All Projects</span>
+            <ArrowRight size={18} />
+          </button>
         </div>
       </div>
 

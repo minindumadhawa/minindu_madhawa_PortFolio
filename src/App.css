@@ -79,7 +79,8 @@
   padding: 0.4rem 0;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   color: var(--text-primary);
 }
 
@@ -720,14 +721,29 @@
 }
 
 @keyframes holoShine {
-  0% { transform: translateY(-50%) rotate(30deg); }
-  100% { transform: translateY(50%) rotate(30deg); }
+  0% {
+    transform: translateY(-50%) rotate(30deg);
+  }
+
+  100% {
+    transform: translateY(50%) rotate(30deg);
+  }
 }
 
 @keyframes swingCard {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(1.8deg); }
-  75% { transform: rotate(-1.8deg); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(1.8deg);
+  }
+
+  75% {
+    transform: rotate(-1.8deg);
+  }
 }
 
 .animate-swing {
@@ -988,7 +1004,8 @@
   transition: all var(--transition-fast);
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
   background: var(--action-color);
   color: #fff;
   border-color: transparent;
@@ -1068,9 +1085,20 @@
   transition: transform 0.2s ease;
 }
 
-.dot-close { background: #ff5f56; border: 1px solid #e0443e; }
-.dot-minimize { background: #ffbd2e; border: 1px solid #dea123; }
-.dot-maximize { background: #27c93f; border: 1px solid #1aab29; }
+.dot-close {
+  background: #ff5f56;
+  border: 1px solid #e0443e;
+}
+
+.dot-minimize {
+  background: #ffbd2e;
+  border: 1px solid #dea123;
+}
+
+.dot-maximize {
+  background: #27c93f;
+  border: 1px solid #1aab29;
+}
 
 .desktop-window-frame:hover .dot {
   transform: scale(1.1);
@@ -1303,6 +1331,135 @@
   border-top: 1px solid var(--border-color);
 }
 
+/* View All Projects CTA on Home */
+.view-all-projects-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.5rem;
+}
+
+.view-all-btn {
+  padding: 0.95rem 2.2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 118, 223, 0.35);
+  transition: all var(--transition-normal);
+}
+
+.view-all-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 118, 223, 0.5);
+}
+
+/* All Projects Showcase Page */
+.all-projects-page {
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+  min-height: 100vh;
+}
+
+.all-projects-header-nav {
+  margin-bottom: 2rem;
+}
+
+.back-home-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.back-home-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--action-color);
+  color: var(--action-color);
+  transform: translateX(-4px);
+}
+
+.all-projects-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.search-box-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.project-search-input {
+  width: 100%;
+  padding: 0.85rem 2.8rem 0.85rem 3rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.project-search-input:focus {
+  border-color: var(--action-color);
+  box-shadow: 0 0 20px var(--action-light);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.no-projects-found {
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.no-projects-icon {
+  color: var(--action-color);
+  opacity: 0.8;
+}
+
+.all-projects-bottom-back {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
 .details-link {
   background: none;
   border: none;
@@ -1432,7 +1589,8 @@
   border: 1px solid var(--border-color);
 }
 
-.modal-highlights h4, .modal-tech-stack h4 {
+.modal-highlights h4,
+.modal-tech-stack h4 {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
@@ -1782,7 +1940,8 @@
   color: var(--text-secondary);
 }
 
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   width: 100%;
   padding: 0.9rem 1.1rem;
   border-radius: var(--radius-md);
@@ -1795,7 +1954,8 @@
   transition: all var(--transition-fast);
 }
 
-.form-group input:focus, .form-group textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus {
   border-color: var(--action-color);
   background: rgba(255, 255, 255, 0.07);
   box-shadow: 0 0 15px rgba(0, 118, 223, 0.3);
@@ -1915,25 +2075,34 @@
     text-align: center;
     gap: 3rem;
   }
+
   .hero-bio {
     margin-left: auto;
     margin-right: auto;
   }
-  .hero-ctas, .hero-socials {
+
+  .hero-ctas,
+  .hero-socials {
     justify-content: center;
   }
+
   .hero-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .about-grid {
     grid-template-columns: 1fr;
   }
-  .skills-categories-grid, .projects-grid {
+
+  .skills-categories-grid,
+  .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1946,41 +2115,55 @@
     padding: 0.65rem 1.25rem;
     border-radius: var(--radius-lg);
   }
-  .navbar-desktop, .nav-cta {
+
+  .navbar-desktop,
+  .nav-cta {
     display: none;
   }
+
   .mobile-toggle-btn {
     display: block;
   }
+
   .hero-title {
     font-size: 2.5rem;
   }
+
   .avatar-image-container {
     width: 240px;
     height: 240px;
   }
+
   .avatar-glow-ring {
     width: 260px;
     height: 260px;
   }
-  .skills-categories-grid, .projects-grid, .services-grid {
+
+  .skills-categories-grid,
+  .projects-grid,
+  .services-grid {
     grid-template-columns: 1fr;
   }
+
   .timeline-line {
     left: 20px;
   }
+
   .timeline-item {
     width: 100%;
     padding-left: 3rem !important;
     padding-right: 0 !important;
     left: 0 !important;
   }
+
   .timeline-node {
     left: 0 !important;
   }
+
   .form-row {
     grid-template-columns: 1fr;
   }
+
   .footer-top {
     flex-direction: column;
     align-items: flex-start;

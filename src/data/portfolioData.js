@@ -59,54 +59,123 @@ export const skillsData = [
 export const projectsData = [
   {
     id: 1,
-    title: "CareerPath - Internship & Career Development Platform​",
+    title: "CareerPath - Internship & Career Development Platform",
     category: "Full Stack",
-    description: "CareerPath is a modern web-based internship and career development platform designed to connect university students with companies.​",
-    fullDescription: "CareerPath is a modern web-based internship and career development platform designed to connect university students with companies. ​The system simplifies internship searching, recruitment management, CV reviewing, and career guidance.​ By combining internship opportunities with leadership programs, skill tests, and AI-powered career support, CareerPath helps students become industry-ready professionals.​​",
+    description: "CareerPath is a modern web-based internship and career development platform designed to connect university students with companies.",
+    fullDescription: "CareerPath is a modern web-based internship and career development platform designed to connect university students with companies. The system simplifies internship searching, recruitment management, CV reviewing, and career guidance. By combining internship opportunities with leadership programs, skill tests, and AI-powered career support, CareerPath helps students become industry-ready professionals.",
     image: "/project1.png",
-    tags: ["Mongo db​", "Express.js​", "React.js​", "Node.js​"],
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
     demoUrl: "https://example.com/CareerPath",
     githubUrl: "https://github.com/minindumadhawa/CareerPath",
     featured: true,
     highlights: [
-      "Admin Dashboard with AI-Based CV",
-      "Student Profile & Resume Management​",
-      "Internship Posting & Company Dashboard​",
-      "Career Advice Management"
+      "Admin Dashboard with AI-Based CV Analysis",
+      "Student Profile & Resume Management",
+      "Internship Posting & Company Recruitment Dashboard",
+      "Interactive Career Advice & Skill Assessment"
     ]
   },
   {
     id: 2,
     title: "Smart Campus Operations Hub",
     category: "Full Stack",
-    description: "The purpose of this project is to design and develop a web-based system called the Smart Campus Operations Hub, which helps manage university facilities, bookings, and maintenance activities in a centralized platform.",
-    fullDescription: "Smart Campus Operations Hub is a comprehensive web-based platform designed to streamline the management of university facilities, bookings, and maintenance activities. It provides a centralized system for staff to handle room reservations, equipment requests, maintenance tracking, and facility analytics. The platform ensures efficient resource utilization, reduces administrative workload, and enhances the overall campus experience through automated workflows and real-time notifications.",
+    description: "Centralized web platform managing university facilities, room bookings, and maintenance requests with automated workflows.",
+    fullDescription: "Smart Campus Operations Hub is a comprehensive web-based platform designed to streamline the management of university facilities, bookings, and maintenance activities. It provides a centralized system for staff to handle room reservations, equipment requests, maintenance tracking, and facility analytics.",
     image: "/project2.png",
-    tags: ["Spring Boot, Java 17", "React", "Mysql", "Google OAuth"],
+    tags: ["Spring Boot", "Java 17", "React", "MySQL", "Google OAuth"],
     demoUrl: "https://example.com/smart-campus-operations-hub",
     githubUrl: "https://github.com/minindumadhawa/it3030-paf-2026-smart-campus-group47",
     featured: true,
     highlights: [
-      "40+ REST API endpoints",
-      "20+ responsive frontend pages",
+      "40+ REST API endpoints with Spring Boot & Hibernate",
+      "20+ responsive frontend pages built with React",
       "Clean layered architecture (Controller → Service → Repository)"
     ]
   },
   {
     id: 3,
+    title: "DevPulse - Agile Task & Sprint Analytics Suite",
+    category: "Full Stack",
+    description: "Collaborative project management dashboard with real-time Kanban boards, sprint burn-down charts, and automated team activity feeds.",
+    fullDescription: "DevPulse is an enterprise-ready agile workspace designed for modern engineering teams. It features real-time WebSocket syncing for interactive Kanban boards, customizable task workflows, automated Git commit tracking integrations, and insightful sprint reporting analytics.",
+    image: "/project4.png",
+    tags: ["Next.js 14", "TypeScript", "Node.js", "PostgreSQL", "Prisma"],
+    demoUrl: "https://example.com/devpulse",
+    githubUrl: "https://github.com/minindumadhawa/devpulse-agile-suite",
+    featured: true,
+    highlights: [
+      "Real-time drag-and-drop Kanban boards with WebSockets",
+      "Interactive sprint analytics & burndown charts",
+      "Role-based permission access & OAuth 2.0 authentication"
+    ]
+  },
+  {
+    id: 4,
+    title: "PulseHealth - Telemedicine & Patient Portal",
+    category: "Full Stack",
+    description: "Comprehensive healthcare portal for digital appointment scheduling, real-time vitals monitoring, and secure e-prescriptions.",
+    fullDescription: "PulseHealth connects patients with medical specialists through a sleek, HIPAA-compliant digital health platform. Features include instant doctor video consultation scheduling, real-time health vitals tracking with visual graphs, digital prescription refills, and encrypted medical records.",
+    image: "/project5.png",
+    tags: ["React 19", "Express.js", "MongoDB", "Tailwind CSS", "WebRTC"],
+    demoUrl: "https://example.com/pulsehealth",
+    githubUrl: "https://github.com/minindumadhawa/pulsehealth-telemedicine",
+    featured: true,
+    highlights: [
+      "Live doctor appointment booking & calendar integration",
+      "Interactive patient vitals & medical history monitoring dashboard",
+      "Encrypted cloud document vault for electronic health records (EHR)"
+    ]
+  },
+  {
+    id: 5,
     title: "Almira INC - Online Advertising Agency",
     category: "Frontend",
     description: "Almira INC is a modern, responsive online advertising agency website built with HTML, CSS, and Vanilla JavaScript.",
     fullDescription: "Almira INC is a modern, responsive online advertising agency website built with HTML, CSS, and Vanilla JavaScript. The site features a modern glassmorphism design with smooth micro-animations, hover effects, and seamless transitions between pages. It includes dedicated pages for the agency's services, a portfolio showcase, client testimonials, and a contact form for lead generation.",
     image: "/project3.png",
-    tags: ["HTML", "CSS", "JavaScript"],
+    tags: ["HTML5", "CSS3", "JavaScript"],
     demoUrl: "https://example.com/almira-inc",
     githubUrl: "https://github.com/minindumadhawa/almira-inc",
     featured: true,
     highlights: [
-      "10+ fully responsive pages",
-      "Modern Glassmorphism design",
-      "Contact form for lead generation"
+      "10+ fully responsive agency pages",
+      "Modern Glassmorphism visual design system",
+      "Interactive contact form & lead generation pipeline"
+    ]
+  },
+  {
+    id: 6,
+    title: "FitTrack Pro - AI Fitness & Health Mobile App",
+    category: "App Development",
+    description: "Cross-platform mobile application delivering real-time workout tracking, AI calorie recognition, and interactive heart rate telemetry.",
+    fullDescription: "FitTrack Pro is a feature-packed native mobile application crafted for iOS and Android. It leverages device sensors and wearable Bluetooth connectivity to log workouts, display real-time cardiac performance graphs, recommend personalized AI training plans, and track daily macronutrient targets.",
+    image: "/project6.png",
+    tags: ["React Native", "Expo", "Redux Toolkit", "Firebase", "Node.js"],
+    demoUrl: "https://example.com/fittrack-pro",
+    githubUrl: "https://github.com/minindumadhawa/fittrack-mobile-app",
+    featured: true,
+    highlights: [
+      "Cross-platform iOS & Android mobile UI built with React Native",
+      "Real-time workout telemetry & cardiac performance graphs",
+      "Offline sync mode with SQLite local data persistence"
+    ]
+  },
+  {
+    id: 7,
+    title: "MyGro - Smart Grocery Shopping & Budget Companion",
+    category: "App Development",
+    description: "MyGro is your smart and simple grocery shopping companion. Create lists, track prices, set expiration reminders, and keep an eye on your budget.",
+    fullDescription: "MyGro is your smart and simple grocery shopping companion. It helps you create and manage your grocery lists easily, so you never forget what you need. You can add items, set quantities, track prices, and even get reminders before your food expires. MyGro lets you keep an eye on your budget while shopping, making it easier to save money. With a clean and friendly design, you can quickly find your items and organize them by category. Whether you shop weekly or daily, MyGro makes grocery shopping faster, easier, and more organized—helping you enjoy fresher and smarter living every day.",
+    image: "/project7.png",
+    tags: ["React Native", "Expo", "Redux", "SQLite", "Node.js"],
+    demoUrl: "https://example.com/mygro",
+    githubUrl: "https://github.com/minindumadhawa/mygro-grocery-app",
+    featured: true,
+    highlights: [
+      "Smart grocery list creation & item categorization",
+      "Food expiration date tracking & smart reminders",
+      "Real-time budget tracking & shopping expense calculator",
+      "Clean, user-friendly mobile design for fast in-store shopping"
     ]
   }
 ];

@@ -2,47 +2,66 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, Code, Send } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
-export default function Navbar({ theme, toggleTheme }) {
+export default function Navbar({ theme, toggleTheme, currentPage, navigateToHome, navigateToAllProjects }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
   const navLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '#hero', section: 'hero' },
+    { name: 'About', href: '#about', section: 'about' },
+    { name: 'Skills', href: '#skills', section: 'skills' },
+    { name: 'Projects', href: '#projects', section: 'projects' },
+    { name: 'Experience', href: '#experience', section: 'experience' },
+    { name: 'Services', href: '#services', section: 'services' },
+    { name: 'Contact', href: '#contact', section: 'contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      // Section highlight logic
-      const sections = navLinks.map(link => link.href.substring(1));
-      const scrollPos = window.scrollY + 200;
+      if (currentPage === 'home') {
+        const sections = navLinks.map(link => link.section);
+        const scrollPos = window.scrollY + 200;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const elem = document.getElementById(sections[i]);
-        if (elem && elem.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const elem = document.getElementById(sections[i]);
+          if (elem && elem.offsetTop <= scrollPos) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
+      } else {
+        setActiveSection('projects');
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentPage]);
+
+  const handleNavClick = (e, link) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    
+    if (link.section === 'projects') {
+      if (navigateToAllProjects) navigateToAllProjects();
+    } else if (currentPage !== 'home') {
+      if (navigateToHome) navigateToHome(link.section);
+    } else {
+      const elem = document.getElementById(link.section);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <header className={`navbar-header ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container navbar-container">
         {/* Brand Logo */}
-        <a href="#hero" className="navbar-logo">
+        <a href="#hero" onClick={(e) => handleNavClick(e, { section: 'hero' })} className="navbar-logo">
           <div className="logo-icon-wrap">
             <Code size={22} className="logo-icon" />
           </div>
@@ -58,7 +77,8 @@ export default function Navbar({ theme, toggleTheme }) {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className={`nav-link ${activeSection === link.href.substring(1) ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, link)}
+                  className={`nav-link ${activeSection === link.section ? 'active' : ''}`}
                 >
                   {link.name}
                 </a>
@@ -78,7 +98,7 @@ export default function Navbar({ theme, toggleTheme }) {
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          <a href="#contact" className="btn btn-primary nav-cta">
+          <a href="#contact" onClick={(e) => handleNavClick(e, { section: 'contact' })} className="btn btn-primary nav-cta">
             <Send size={16} />
             <span>Hire Me</span>
           </a>
@@ -102,8 +122,8 @@ export default function Navbar({ theme, toggleTheme }) {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`mobile-nav-link ${activeSection === link.href.substring(1) ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, link)}
+                  className={`mobile-nav-link ${activeSection === link.section ? 'active' : ''}`}
                 >
                   {link.name}
                 </a>
@@ -111,7 +131,7 @@ export default function Navbar({ theme, toggleTheme }) {
             ))}
           </ul>
           <div className="mobile-drawer-cta">
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="btn btn-primary" style={{ width: '100%' }}>
+            <a href="#contact" onClick={(e) => handleNavClick(e, { section: 'contact' })} className="btn btn-primary" style={{ width: '100%' }}>
               <Send size={18} />
               <span>Get In Touch</span>
             </a>

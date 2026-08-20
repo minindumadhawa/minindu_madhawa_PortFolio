@@ -3,9 +3,21 @@ import { Code, ArrowUp, Heart } from 'lucide-react';
 import { Github, Linkedin, Twitter } from './SocialIcons';
 import { personalData } from '../data/portfolioData';
 
-export default function Footer() {
+export default function Footer({ navigateToHome, navigateToAllProjects }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavClick = (e, section) => {
+    e.preventDefault();
+    if (section === 'projects') {
+      if (navigateToAllProjects) navigateToAllProjects();
+    } else if (navigateToHome) {
+      navigateToHome(section);
+    } else {
+      const elem = document.getElementById(section);
+      if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -14,7 +26,7 @@ export default function Footer() {
         <div className="footer-top">
           {/* Logo & Info */}
           <div className="footer-brand">
-            <a href="#hero" className="footer-logo">
+            <a href="#hero" onClick={(e) => handleNavClick(e, 'hero')} className="footer-logo">
               <Code size={24} className="logo-icon" />
               <span className="logo-text">
                 Minindu<span className="gradient-text">.dev</span>
@@ -27,12 +39,12 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="footer-nav">
-            <a href="#hero">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
+            <a href="#hero" onClick={(e) => handleNavClick(e, 'hero')}>Home</a>
+            <a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a>
+            <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')}>Skills</a>
+            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projects</a>
+            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')}>Experience</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a>
           </div>
 
           {/* Socials & Back to Top */}
