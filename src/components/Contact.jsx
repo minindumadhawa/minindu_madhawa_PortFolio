@@ -3,10 +3,11 @@ import { Mail, Phone, MapPin, Send, Copy, Check, MessageSquare } from 'lucide-re
 import { personalData } from '../data/portfolioData';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', _gotcha: '' });
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalData.email);
@@ -14,17 +15,81 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e) => {
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+
+    // 1. Anti-Spam Honeypot Check: If honeypot is filled by bot, silently block
+    if (formData._gotcha) {
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '', _gotcha: '' });
+      return;
+    }
+
+    // 2. Rate Limiting Check (Block submit within 15 seconds)
+    const now = Date.now();
+    if (now - lastSubmitTime < 15000) {
+      alert('Please wait a few seconds before sending another message.');
+      return;
+    }
+
+    // 3. Validation & Sanitization
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedSubject = formData.subject.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (!validateEmail(trimmedEmail)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setLastSubmitTime(now);
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${personalData.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          subject: trimmedSubject || 'New Portfolio Contact Message',
+          message: trimmedMessage,
+          _captcha: 'false',
+          _template: 'table'
+        })
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '', _gotcha: '' });
+        setTimeout(() => setSubmitted(false), 6000);
+      } else {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '', _gotcha: '' });
+        setTimeout(() => setSubmitted(false), 6000);
+      }
+    } catch (error) {
       setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+      setFormData({ name: '', email: '', subject: '', message: '', _gotcha: '' });
+      setTimeout(() => setSubmitted(false), 6000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -104,6 +169,17 @@ export default function Contact() {
           {/* Right: Contact Form */}
           <div className="glass-card contact-form-card">
             <form onSubmit={handleSubmit} className="contact-form">
+              {/* Hidden Honeypot Input for Anti-Spam Bot Protection */}
+              <input
+                type="text"
+                name="_gotcha"
+                value={formData._gotcha}
+                onChange={(e) => setFormData({ ...formData, _gotcha: e.target.value })}
+                style={{ display: 'none' }}
+                tabIndex="-1"
+                autoComplete="off"
+              />
+
               {submitted && (
                 <div className="form-success-banner">
                   <Check size={20} />
