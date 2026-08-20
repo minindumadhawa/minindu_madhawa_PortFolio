@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Mail, Download, Sparkles, CheckCircle2, Cpu, QrCode, Move } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Mail, Download, Sparkles, CheckCircle2, Move } from 'lucide-react';
 import { Github, Linkedin, Twitter } from './SocialIcons';
 import { personalData } from '../data/portfolioData';
 
@@ -8,10 +8,15 @@ export default function Hero() {
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Drag Physics State
+  // Drag & Real Physics Spring Simulation State
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [isSpringing, setIsSpringing] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+
+  const animFrameRef = useRef(null);
+  const posRef = useRef({ x: 0, y: 0 });
+  const velRef = useRef({ vx: 0, vy: 0 });
 
   // Typewriter effect logic
   useEffect(() => {
@@ -43,13 +48,25 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, currentRoleIndex]);
 
+  // Cancel spring simulation if active
+  const cancelSpringAnimation = () => {
+    if (animFrameRef.current) {
+      cancelAnimationFrame(animFrameRef.current);
+      animFrameRef.current = null;
+    }
+  };
+
   // Mouse & Touch Drag Event Handlers
   const handleStart = (clientX, clientY) => {
+    cancelSpringAnimation();
     setIsDragging(true);
+    setIsSpringing(false);
     setStartPos({
       x: clientX - dragOffset.x,
       y: clientY - dragOffset.y,
     });
+    posRef.current = { x: dragOffset.x, y: dragOffset.y };
+    velRef.current = { vx: 0, vy: 0 };
   };
 
   const handleMouseDown = (e) => {
@@ -60,6 +77,50 @@ export default function Hero() {
     if (e.touches && e.touches[0]) {
       handleStart(e.touches[0].clientX, e.touches[0].clientY);
     }
+  };
+
+  // Real Multi-Bounce Spring Physics Loop (Hooke's Law Oscillation)
+  const triggerSpringPhysicsReturn = (initialX, initialY) => {
+    cancelSpringAnimation();
+    setIsSpringing(true);
+
+    posRef.current = { x: initialX, y: initialY };
+    velRef.current = { vx: 0, vy: 0 };
+
+    const stiffness = 0.09; // Spring stiffness
+    const damping = 0.74;   // Rubber band friction decay
+
+    const step = () => {
+      // Calculate spring restoring force F = -k * x
+      const fx = -stiffness * posRef.current.x;
+      const fy = -stiffness * posRef.current.y;
+
+      // Update velocity with damping
+      velRef.current.vx = (velRef.current.vx + fx) * damping;
+      velRef.current.vy = (velRef.current.vy + fy) * damping;
+
+      // Update position
+      posRef.current.x += velRef.current.vx;
+      posRef.current.y += velRef.current.vy;
+
+      setDragOffset({ x: posRef.current.x, y: posRef.current.y });
+
+      // Check if energy decayed to rest threshold
+      if (
+        Math.abs(posRef.current.x) < 0.15 &&
+        Math.abs(posRef.current.y) < 0.15 &&
+        Math.abs(velRef.current.vx) < 0.15 &&
+        Math.abs(velRef.current.vy) < 0.15
+      ) {
+        setDragOffset({ x: 0, y: 0 });
+        setIsSpringing(false);
+        cancelSpringAnimation();
+      } else {
+        animFrameRef.current = requestAnimationFrame(step);
+      }
+    };
+
+    animFrameRef.current = requestAnimationFrame(step);
   };
 
   useEffect(() => {
@@ -75,14 +136,15 @@ export default function Hero() {
       newX = Math.max(-750, Math.min(350, newX));
       newY = Math.max(-100, Math.min(280, newY));
 
+      posRef.current = { x: newX, y: newY };
       setDragOffset({ x: newX, y: newY });
     };
 
     const handleEnd = () => {
       if (!isDragging) return;
       setIsDragging(false);
-      // Spring bounce back to original position
-      setDragOffset({ x: 0, y: 0 });
+      // Trigger multi-bounce rubber band physics simulation
+      triggerSpringPhysicsReturn(posRef.current.x, posRef.current.y);
     };
 
     if (isDragging) {
@@ -100,19 +162,23 @@ export default function Hero() {
     };
   }, [isDragging, startPos]);
 
+  useEffect(() => {
+    return () => cancelSpringAnimation();
+  }, []);
+
   // Dynamic SVG Flexible Lanyard Curve Coordinates
   // Top Fixed Anchor: (160, -140)
-  // ID Card Slot Hole exact attachment point: (160 + dragOffset.x, 26 + dragOffset.y)
+  // Attachment Point: (160 + dragOffset.x, 155 + dragOffset.y)
   const anchorX = 160;
   const anchorY = -140;
   const cardX = 160 + dragOffset.x;
-  const cardY = 26 + dragOffset.y;
+  const cardY = 155 + dragOffset.y;
 
   // Natural physics curve control point
   const controlX = anchorX + dragOffset.x * 0.45;
   const controlY = anchorY + (cardY - anchorY) * 0.45 + Math.abs(dragOffset.x) * 0.08;
 
-  const lanyardCurvePath = `M ${anchorX} ${anchorY} Q ${controlX} ${controlY} ${cardX} ${cardY - 12}`;
+  const lanyardCurvePath = `M ${anchorX} ${anchorY} Q ${controlX} ${controlY} ${cardX} ${cardY - 140}`;
   const rotationAngle = dragOffset.x * 0.08;
 
   return (
@@ -183,7 +249,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Interactive Drag & Spring ID Badge with Flexible Connected Rope */}
+        {/* Right Column: Hanging Flexible Lanyard Ribbon with Glowing Avatar Portrait Frame */}
         <div className="hero-idcard-wrapper">
           {/* Dynamic Flexible SVG Lanyard Ribbon Canvas */}
           <svg className="svg-lanyard-canvas" viewBox="0 -160 320 600">
@@ -211,9 +277,6 @@ export default function Hero() {
               stroke="rgba(0, 118, 223, 0.45)"
               strokeWidth="14"
               strokeLinecap="round"
-              style={{
-                transition: isDragging ? 'none' : 'd 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.35)'
-              }}
             />
 
             {/* Main flexible ribbon */}
@@ -224,9 +287,6 @@ export default function Hero() {
               strokeWidth="8"
               strokeLinecap="round"
               filter="url(#lanyardGlow)"
-              style={{
-                transition: isDragging ? 'none' : 'd 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.35)'
-              }}
             />
 
             {/* Stitching pattern line */}
@@ -237,89 +297,55 @@ export default function Hero() {
               strokeWidth="1.5"
               strokeDasharray="4 3"
               strokeLinecap="round"
-              style={{
-                transition: isDragging ? 'none' : 'd 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.35)'
-              }}
             />
 
-            {/* Metallic Clip Hook attached directly into the card hole slot */}
+            {/* Metallic Clip Hook attached directly onto the portrait frame */}
             <g
               style={{
-                transform: `translate3d(${dragOffset.x}px, ${dragOffset.y}px, 0)`,
-                transition: isDragging ? 'none' : 'transform 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.35)',
-                transformOrigin: '160px 26px'
+                transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 145}px, 0)`,
+                transformOrigin: '160px 0px'
               }}
             >
               {/* Metallic Crimper Band */}
-              <rect x="150" y="-2" width="20" height="12" rx="3" fill="url(#metalGradient)" stroke="#374151" strokeWidth="1" />
-              {/* Swivel Loop Hook passing into slot */}
-              <path d="M 153 10 L 167 10 L 164 24 A 4 4 0 0 1 156 24 Z" fill="url(#metalGradient)" stroke="#1f2937" strokeWidth="1.2" />
-              {/* Ring Hole Clip Loop */}
-              <circle cx="160" cy="22" r="5" fill="none" stroke="#d1d5db" strokeWidth="2.5" />
+              <rect x="150" y="-12" width="20" height="12" rx="3" fill="url(#metalGradient)" stroke="#374151" strokeWidth="1" />
+              {/* Swivel Loop Hook */}
+              <path d="M 153 0 L 167 0 L 164 14 A 4 4 0 0 1 156 14 Z" fill="url(#metalGradient)" stroke="#1f2937" strokeWidth="1.2" />
+              {/* Attachment Clip Ring */}
+              <circle cx="160" cy="12" r="5" fill="none" stroke="#d1d5db" strokeWidth="2.5" />
             </g>
           </svg>
 
-          {/* Pull Me Tooltip */}
+          {/* Drag Tooltip */}
           <div 
             className={`drag-hint-pill ${isDragging ? 'dragging' : ''}`}
             style={{
-              transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 35}px, 0)`,
-              transition: isDragging ? 'none' : 'transform 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.35)'
+              transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 170}px, 0)`
             }}
           >
             <Move size={13} />
-            <span>{isDragging ? 'Dragging Left/Right...' : 'Pull & Drag Me All Around!'}</span>
+            <span>{isDragging ? 'Dragging...' : 'Pull & Drag Me!'}</span>
           </div>
 
-          {/* Interactive Hanging ID Card Container */}
+          {/* Hanging Glowing Avatar Portrait Frame attached to Lanyard (ID Card Removed) */}
           <div 
-            className={`idcard-container ${isDragging ? 'is-dragging' : 'animate-swing'}`}
+            className={`hanging-avatar-container ${isDragging || isSpringing ? 'is-dragging' : 'animate-swing'}`}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
             style={{
               transform: `translate3d(${dragOffset.x}px, ${dragOffset.y}px, 0) rotate(${rotationAngle}deg)`,
-              transition: isDragging ? 'none' : 'transform 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.35)',
               cursor: isDragging ? 'grabbing' : 'grab'
             }}
           >
-            <div className="idcard-hole"></div>
-
-            {/* Top Security Header */}
-            <div className="idcard-header">
-              <div className="idcard-logo-tag">
-                <Cpu size={14} className="idcard-cpu-icon" />
-                <span>DEV.PASS // 2026</span>
-              </div>
-              <div className="idcard-chip"></div>
+            <div className="avatar-glow-ring"></div>
+            <div className="avatar-image-container">
+              <img src="/minindu_profile.jpg" alt={personalData.name} className="hero-avatar-img" draggable="false" />
             </div>
 
-            {/* Photo Section */}
-            <div className="idcard-photo-wrapper">
-              <img src="/minindu_profile.jpg" alt={personalData.name} className="idcard-photo-img" draggable="false" />
-              <div className="idcard-status-pill">
-                <span className="idcard-status-dot"></span>
-                <span>ACTIVE</span>
-              </div>
+            {/* Active Status Badge */}
+            <div className="avatar-status-pill">
+              <span className="avatar-status-dot"></span>
+              <span>AVAILABLE FOR HIRE</span>
             </div>
-
-            {/* ID Card Content */}
-            <div className="idcard-details">
-              <h3 className="idcard-name">{personalData.name}</h3>
-              <p className="idcard-title">Full-Stack Software Engineer</p>
-
-              <div className="idcard-footer">
-                <div className="idcard-meta">
-                  <span className="meta-label">ID NUMBER</span>
-                  <span className="meta-val">#MM-9407-DEV</span>
-                </div>
-                <div className="idcard-qr">
-                  <QrCode size={26} />
-                </div>
-              </div>
-            </div>
-
-            {/* Holographic Security Overlay Shine */}
-            <div className="idcard-holo-shine"></div>
           </div>
 
           {/* Floating Pill Badges */}
