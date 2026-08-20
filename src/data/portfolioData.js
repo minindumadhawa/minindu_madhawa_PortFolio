@@ -9,21 +9,20 @@ export const personalData = {
   ],
   bio: "Passionate software engineer focused on crafting high-performance, visually stunning web applications and digital experiences. Experienced in modern JavaScript ecosystems, responsive design systems, and cloud integrations.",
   location: "Sri Lanka",
-  email: "minindumadhawa.dev@gmail.com",
-  phone: "+94 7X XXX XXXX",
+  email: "minidumadawa259@gmail.com",
+  phone: "+94 76 454 5362",
   avatar: "/avatar.png",
   resumeUrl: "#",
   socials: {
     github: "https://github.com/minindumadhawa",
-    linkedin: "https://linkedin.com/in/minindumadhawa",
-    twitter: "https://twitter.com/minindumadhawa",
-    email: "mailto:minindumadhawa.dev@gmail.com"
+    linkedin: "https://linkedin.com/in/minindu-madhawa",
+    twitter: "https://twitter.com/MininduMadhawa",
+    email: "minidumadawa259@gmail.com"
   },
   stats: [
-    { label: "Years Experience", value: "3+" },
-    { label: "Projects Completed", value: "25+" },
-    { label: "Satisfied Clients", value: "18+" },
-    { label: "Code Commits", value: "1.2k+" }
+    { label: "Years of Project Experience", value: "3+" },
+    { label: "Projects Completed", value: "10+" },
+    { label: "Code Commits", value: "600+" }
   ]
 };
 
