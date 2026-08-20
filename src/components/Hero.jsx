@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Mail, Download, Sparkles, CheckCircle2, Move } from 'lucide-react';
+import { ArrowRight, Mail, Download, Sparkles, CheckCircle2, Move, Cpu, QrCode } from 'lucide-react';
 import { Github, Linkedin, Twitter } from './SocialIcons';
 import { personalData } from '../data/portfolioData';
 
@@ -91,21 +91,17 @@ export default function Hero() {
     const damping = 0.74;   // Rubber band friction decay
 
     const step = () => {
-      // Calculate spring restoring force F = -k * x
       const fx = -stiffness * posRef.current.x;
       const fy = -stiffness * posRef.current.y;
 
-      // Update velocity with damping
       velRef.current.vx = (velRef.current.vx + fx) * damping;
       velRef.current.vy = (velRef.current.vy + fy) * damping;
 
-      // Update position
       posRef.current.x += velRef.current.vx;
       posRef.current.y += velRef.current.vy;
 
       setDragOffset({ x: posRef.current.x, y: posRef.current.y });
 
-      // Check if energy decayed to rest threshold
       if (
         Math.abs(posRef.current.x) < 0.15 &&
         Math.abs(posRef.current.y) < 0.15 &&
@@ -143,7 +139,6 @@ export default function Hero() {
     const handleEnd = () => {
       if (!isDragging) return;
       setIsDragging(false);
-      // Trigger multi-bounce rubber band physics simulation
       triggerSpringPhysicsReturn(posRef.current.x, posRef.current.y);
     };
 
@@ -168,17 +163,17 @@ export default function Hero() {
 
   // Dynamic SVG Flexible Lanyard Curve Coordinates
   // Top Fixed Anchor: (160, -140)
-  // Attachment Point: (160 + dragOffset.x, 155 + dragOffset.y)
+  // Attachment Point on White Outer Frame: (160 + dragOffset.x, 15 + dragOffset.y)
   const anchorX = 160;
   const anchorY = -140;
   const cardX = 160 + dragOffset.x;
-  const cardY = 155 + dragOffset.y;
+  const cardY = 15 + dragOffset.y;
 
   // Natural physics curve control point
   const controlX = anchorX + dragOffset.x * 0.45;
   const controlY = anchorY + (cardY - anchorY) * 0.45 + Math.abs(dragOffset.x) * 0.08;
 
-  const lanyardCurvePath = `M ${anchorX} ${anchorY} Q ${controlX} ${controlY} ${cardX} ${cardY - 140}`;
+  const lanyardCurvePath = `M ${anchorX} ${anchorY} Q ${controlX} ${controlY} ${cardX} ${cardY - 10}`;
   const rotationAngle = dragOffset.x * 0.08;
 
   return (
@@ -249,7 +244,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Hanging Flexible Lanyard Ribbon with Glowing Avatar Portrait Frame */}
+        {/* Right Column: Hanging Flexible Lanyard Ribbon with White Curved Outer Rectangle Polaroid Card */}
         <div className="hero-idcard-wrapper">
           {/* Dynamic Flexible SVG Lanyard Ribbon Canvas */}
           <svg className="svg-lanyard-canvas" viewBox="0 -160 320 600">
@@ -299,10 +294,10 @@ export default function Hero() {
               strokeLinecap="round"
             />
 
-            {/* Metallic Clip Hook attached directly onto the portrait frame */}
+            {/* Metallic Clip Hook attached directly onto the top hole of the white card */}
             <g
               style={{
-                transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 145}px, 0)`,
+                transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 12}px, 0)`,
                 transformOrigin: '160px 0px'
               }}
             >
@@ -319,14 +314,14 @@ export default function Hero() {
           <div 
             className={`drag-hint-pill ${isDragging ? 'dragging' : ''}`}
             style={{
-              transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 170}px, 0)`
+              transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 45}px, 0)`
             }}
           >
             <Move size={13} />
             <span>{isDragging ? 'Dragging...' : 'Pull & Drag Me!'}</span>
           </div>
 
-          {/* Hanging Glowing Avatar Portrait Frame attached to Lanyard (ID Card Removed) */}
+          {/* Hanging White Curved Outer Rectangle Polaroid Card attached to Lanyard */}
           <div 
             className={`hanging-avatar-container ${isDragging || isSpringing ? 'is-dragging' : 'animate-swing'}`}
             onMouseDown={handleMouseDown}
@@ -337,14 +332,52 @@ export default function Hero() {
             }}
           >
             <div className="avatar-glow-ring"></div>
-            <div className="avatar-image-container">
-              <img src="/minindu_profile.jpg" alt={personalData.name} className="hero-avatar-img" draggable="false" />
-            </div>
 
-            {/* Active Status Badge */}
-            <div className="avatar-status-pill">
-              <span className="avatar-status-dot"></span>
-              <span>AVAILABLE FOR HIRE</span>
+            {/* Double Layered White Curved Outer Rectangle Pass Card */}
+            <div className="white-curved-outer-card">
+              <div className="white-card-hole"></div>
+
+              {/* Pass Header Tag */}
+              <div className="white-card-header">
+                <div className="white-card-pass-tag">
+                  <Cpu size={13} className="white-card-cpu-icon" />
+                  <span>DEV.PASS // 2026</span>
+                </div>
+                <div className="white-card-chip"></div>
+              </div>
+
+              {/* Inner Photo Frame */}
+              <div className="avatar-image-container">
+                <img src="/minindu_profile.jpg" alt={personalData.name} className="hero-avatar-img" draggable="false" />
+                
+                {/* Active Status Badge */}
+                <div className="avatar-status-pill">
+                  <span className="avatar-status-dot"></span>
+                  <span>ACTIVE</span>
+                </div>
+              </div>
+
+              {/* Detailed Card Info Section */}
+              <div className="white-card-details">
+                <div className="white-card-user-info">
+                  <h3 className="white-card-name">{personalData.name}</h3>
+                  <p className="white-card-role">Full-Stack Software Engineer</p>
+                </div>
+
+                <div className="white-card-meta-row">
+                  <div className="white-meta-col">
+                    <span className="white-meta-label">ID NO</span>
+                    <span className="white-meta-val">#MM-9407</span>
+                  </div>
+                  <div className="white-meta-col">
+                    <span className="white-meta-label">PASS CODE</span>
+                    <span className="white-meta-val">PASS-8820</span>
+                  </div>
+                  <div className="white-card-qr" title="Security Verification Barcode">
+                    <QrCode size={24} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
