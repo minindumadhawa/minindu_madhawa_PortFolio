@@ -43,7 +43,6 @@ export default function Footer({ navigateToHome, navigateToAllProjects }) {
             <a href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a>
             <a href="#skills" onClick={(e) => handleNavClick(e, 'skills')}>Skills</a>
             <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projects</a>
-            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')}>Experience</a>
             <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a>
           </div>
 

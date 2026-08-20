@@ -12,7 +12,6 @@ export default function Navbar({ theme, toggleTheme, currentPage, navigateToHome
     { name: 'About', href: '#about', section: 'about' },
     { name: 'Skills', href: '#skills', section: 'skills' },
     { name: 'Projects', href: '#projects', section: 'projects' },
-    { name: 'Experience', href: '#experience', section: 'experience' },
     { name: 'Services', href: '#services', section: 'services' },
     { name: 'Contact', href: '#contact', section: 'contact' },
   ];
