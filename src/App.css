@@ -2076,6 +2076,11 @@
     gap: 3rem;
   }
 
+  .hero-idcard-wrapper {
+    order: -1;
+    margin-bottom: 1.5rem;
+  }
+
   .hero-bio {
     margin-left: auto;
     margin-right: auto;
