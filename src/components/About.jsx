@@ -38,7 +38,7 @@ export default function About() {
           <div className="glass-card about-story-card">
             <h3 className="story-title">Engineering Narrative</h3>
             <p className="story-text">
-              I am a dedicated <strong>Software Engineer</strong> based in {personalData.location}, deeply engaged with full-stack web development and user interface design. 
+              I am a dedicated <strong>Software Engineer</strong> based in {personalData.location}, deeply engaged with full-stack web development and user interface design.
             </p>
             <p className="story-text">
               My core mission is to solve real-world problems by building robust backend architectures and engaging frontend applications. I thrive in dynamic team environments, continuously experimenting with emerging frameworks and best practices.
@@ -66,7 +66,7 @@ export default function About() {
                 <GraduationCap size={18} className="info-icon" />
                 <div>
                   <span className="info-label">Degree:</span>
-                  <span className="info-val">B.Sc. Software Engineering</span>
+                  <span className="info-val">B.Sc. Information Technology</span>
                 </div>
               </div>
 
