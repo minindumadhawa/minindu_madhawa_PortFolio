@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Mail, Download, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Mail, Download, Sparkles, CheckCircle2, Cpu, QrCode } from 'lucide-react';
 import { Github, Linkedin, Twitter } from './SocialIcons';
 import { personalData } from '../data/portfolioData';
 
@@ -77,7 +77,6 @@ export default function Hero() {
               href={personalData.resumeUrl} 
               className="btn btn-secondary download-cv-btn"
               onClick={(e) => {
-                // If standard placeholder, trigger notification
                 if (personalData.resumeUrl === '#') {
                   e.preventDefault();
                   alert('Resume download triggered! Replace resumeUrl in src/data/portfolioData.js with your PDF link.');
@@ -107,11 +106,52 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Avatar Glow Frame */}
-        <div className="hero-avatar-wrapper">
-          <div className="avatar-glow-ring"></div>
-          <div className="avatar-image-container">
-            <img src={personalData.avatar} alt={personalData.name} className="hero-avatar-img" />
+        {/* Right Column: Hanging Glassmorphic ID Card Badge */}
+        <div className="hero-idcard-wrapper">
+          {/* Lanyard Strap hanging down from top */}
+          <div className="lanyard-strap"></div>
+          <div className="lanyard-clip"></div>
+
+          {/* Hanging ID Card Container */}
+          <div className="idcard-container animate-swing">
+            <div className="idcard-hole"></div>
+
+            {/* Top Security Header */}
+            <div className="idcard-header">
+              <div className="idcard-logo-tag">
+                <Cpu size={14} className="idcard-cpu-icon" />
+                <span>DEV.PASS // 2026</span>
+              </div>
+              <div className="idcard-chip"></div>
+            </div>
+
+            {/* Photo Section */}
+            <div className="idcard-photo-wrapper">
+              <img src="/minindu_profile.jpg" alt={personalData.name} className="idcard-photo-img" />
+              <div className="idcard-status-pill">
+                <span className="idcard-status-dot"></span>
+                <span>ACTIVE</span>
+              </div>
+            </div>
+
+            {/* ID Card Content */}
+            <div className="idcard-details">
+              <h3 className="idcard-name">{personalData.name}</h3>
+              <p className="idcard-title">Full-Stack Software Engineer</p>
+
+              <div className="idcard-footer">
+                <div className="idcard-meta">
+                  <span className="meta-label">ID NUMBER</span>
+                  <span className="meta-val">#MM-9407-DEV</span>
+                </div>
+                <div className="idcard-qr">
+                  <QrCode size={26} />
+                </div>
+              </div>
+            </div>
+
+            {/* Holographic Security Overlay Shine */}
+            <div className="idcard-holo-shine"></div>
           </div>
 
           {/* Floating Pill Badges */}
