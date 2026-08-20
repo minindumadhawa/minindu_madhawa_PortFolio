@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, ExternalLink, CheckCircle, Tag } from 'lucide-react';
 import { Github } from './SocialIcons';
+import DesktopMockup from './DesktopMockup';
 
 export default function ProjectModal({ project, onClose }) {
   if (!project) return null;
@@ -22,9 +23,15 @@ export default function ProjectModal({ project, onClose }) {
           <X size={20} />
         </button>
 
-        {/* Modal Image */}
-        <div className="modal-image-wrapper">
-          <img src={project.image} alt={project.title} className="modal-img" />
+        {/* Desktop Mockup Preview */}
+        <div className="modal-desktop-wrapper">
+          <DesktopMockup
+            image={project.image}
+            title={project.title}
+            demoUrl={project.demoUrl}
+            category={project.category}
+            isModal={true}
+          />
           <div className="modal-category-pill">{project.category}</div>
         </div>
 

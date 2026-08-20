@@ -59,53 +59,54 @@ export const skillsData = [
 export const projectsData = [
   {
     id: 1,
-    title: "NovaMind - AI SaaS Intelligence Suite",
+    title: "CareerPath - Internship & Career Development Platform​",
     category: "Full Stack",
-    description: "An AI-powered dashboard offering realtime analytics, predictive reporting, and dynamic content generation with high-performance visualization widgets.",
-    fullDescription: "NovaMind is a next-gen web platform built for modern product teams. It integrates LLM APIs with real-time analytics streaming, enabling seamless data visualization, dark glassmorphic widgets, and automated report generation with enterprise security standards.",
+    description: "CareerPath is a modern web-based internship and career development platform designed to connect university students with companies.​",
+    fullDescription: "CareerPath is a modern web-based internship and career development platform designed to connect university students with companies. ​The system simplifies internship searching, recruitment management, CV reviewing, and career guidance.​ By combining internship opportunities with leadership programs, skill tests, and AI-powered career support, CareerPath helps students become industry-ready professionals.​​",
     image: "/project1.png",
-    tags: ["React 19", "Node.js", "Tailwind CSS", "OpenAI API", "Recharts"],
-    demoUrl: "https://example.com/novamind",
-    githubUrl: "https://github.com/minindumadhawa/novamind",
+    tags: ["Mongo db​", "Express.js​", "React.js​", "Node.js​"],
+    demoUrl: "https://example.com/CareerPath",
+    githubUrl: "https://github.com/minindumadhawa/CareerPath",
     featured: true,
     highlights: [
-      "Real-time WebSocket streaming analytics dashboards",
-      "Custom dark UI design system with high contrast visuals",
-      "OAuth 2.0 and JWT secure authentication workflow"
+      "Admin Dashboard with AI-Based CV",
+      "Student Profile & Resume Management​",
+      "Internship Posting & Company Dashboard​",
+      "Career Advice Management"
     ]
   },
   {
     id: 2,
-    title: "Lumina - Modern E-Commerce Platform",
+    title: "Smart Campus Operations Hub",
     category: "Full Stack",
-    description: "A fast, headless e-commerce store with smooth shopping cart transitions, live stock inventory updates, and Stripe payment gateway integration.",
-    fullDescription: "Lumina redefines modern online shopping with instantaneous page transitions, dynamic product filter matrix, secure single-click checkout, and customizable dark/light theme options.",
+    description: "The purpose of this project is to design and develop a web-based system called the Smart Campus Operations Hub, which helps manage university facilities, bookings, and maintenance activities in a centralized platform.",
+    fullDescription: "Smart Campus Operations Hub is a comprehensive web-based platform designed to streamline the management of university facilities, bookings, and maintenance activities. It provides a centralized system for staff to handle room reservations, equipment requests, maintenance tracking, and facility analytics. The platform ensures efficient resource utilization, reduces administrative workload, and enhances the overall campus experience through automated workflows and real-time notifications.",
     image: "/project2.png",
-    tags: ["React", "Express", "MongoDB", "Stripe API", "Framer Motion"],
-    demoUrl: "https://example.com/lumina",
-    githubUrl: "https://github.com/minindumadhawa/lumina-ecommerce",
+    tags: ["Spring Boot, Java 17", "React", "Mysql", "Google OAuth"],
+    demoUrl: "https://example.com/smart-campus-operations-hub",
+    githubUrl: "https://github.com/minindumadhawa/it3030-paf-2026-smart-campus-group47",
     featured: true,
     highlights: [
-      "Instant multi-criteria product search and filtering",
-      "Stripe payment integration with webhooks handling",
-      "Fully mobile responsive cart drawer and checkout flow"
+      "40+ REST API endpoints",
+      "20+ responsive frontend pages",
+      "Clean layered architecture (Controller → Service → Repository)"
     ]
   },
   {
     id: 3,
-    title: "ApexPay - Crypto & Web3 Wallet Tracker",
+    title: "Almira INC - Online Advertising Agency",
     category: "Frontend",
-    description: "Sleek mobile-first Web3 dashboard monitoring multi-chain asset balances, live market candlestick charts, and instant transaction logs.",
-    fullDescription: "ApexPay simplifies crypto asset management with real-time price feeds, animated portfolio growth graphs, interactive transaction logs, and sleek glassmorphic UI cards.",
+    description: "Almira INC is a modern, responsive online advertising agency website built with HTML, CSS, and Vanilla JavaScript.",
+    fullDescription: "Almira INC is a modern, responsive online advertising agency website built with HTML, CSS, and Vanilla JavaScript. The site features a modern glassmorphism design with smooth micro-animations, hover effects, and seamless transitions between pages. It includes dedicated pages for the agency's services, a portfolio showcase, client testimonials, and a contact form for lead generation.",
     image: "/project3.png",
-    tags: ["React", "Vite", "Chart.js", "Web3.js", "CSS Modules"],
-    demoUrl: "https://example.com/apexpay",
-    githubUrl: "https://github.com/minindumadhawa/apexpay-web3",
+    tags: ["HTML", "CSS", "JavaScript"],
+    demoUrl: "https://example.com/almira-inc",
+    githubUrl: "https://github.com/minindumadhawa/almira-inc",
     featured: true,
     highlights: [
-      "Live WebSocket price ticker streaming",
-      "Interactive asset allocation pie & linear growth charts",
-      "PWA support for mobile device installation"
+      "10+ fully responsive pages",
+      "Modern Glassmorphism design",
+      "Contact form for lead generation"
     ]
   }
 ];

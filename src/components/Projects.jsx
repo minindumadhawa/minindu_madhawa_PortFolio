@@ -3,6 +3,7 @@ import { FolderGit2, ExternalLink, Eye, Sparkles } from 'lucide-react';
 import { Github } from './SocialIcons';
 import { projectsData } from '../data/portfolioData';
 import ProjectModal from './ProjectModal';
+import DesktopMockup from './DesktopMockup';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -43,9 +44,13 @@ export default function Projects() {
         <div className="projects-grid">
           {filteredProjects.map((project) => (
             <div key={project.id} className="glass-card project-card">
-              {/* Image Preview */}
-              <div className="project-img-wrapper">
-                <img src={project.image} alt={project.title} className="project-img" />
+              {/* Desktop Mockup Preview */}
+              <DesktopMockup
+                image={project.image}
+                title={project.title}
+                demoUrl={project.demoUrl}
+                category={project.category}
+              >
                 <div className="project-img-overlay">
                   <button 
                     onClick={() => setSelectedProject(project)}
@@ -55,8 +60,7 @@ export default function Projects() {
                     <span>View Case Study</span>
                   </button>
                 </div>
-                <div className="project-category-badge">{project.category}</div>
-              </div>
+              </DesktopMockup>
 
               {/* Card Body */}
               <div className="project-card-body">
