@@ -399,18 +399,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Hero Stats Ribbon */}
-      <div className="container">
-        <div className="hero-stats-grid glass-card">
-          {personalData.stats.map((stat, idx) => (
-            <div key={idx} className="stat-card">
-              <h3 className="stat-value gradient-text">{stat.value}</h3>
-              <p className="stat-label">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

@@ -166,9 +166,9 @@
 
 /* Hero Styles */
 .hero-section {
-  padding-top: 10rem;
-  padding-bottom: 5rem;
-  min-height: 100vh;
+  padding-top: 8.5rem;
+  padding-bottom: 1.5rem;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -179,7 +179,7 @@
   grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
   gap: 4rem;
-  margin-bottom: 5rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-badge {
@@ -820,6 +820,10 @@
 }
 
 /* About Section */
+.about-section {
+  padding-top: 2rem;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
