@@ -9,9 +9,11 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import Preloader from './components/Preloader';
 import './App.css';
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'all-projects'
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('minindu_portfolio_theme') || 'dark';
@@ -45,6 +47,7 @@ export default function App() {
 
   return (
     <div className="portfolio-app">
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       <CustomCursor />
       <Navbar 
         theme={theme} 
