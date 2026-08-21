@@ -993,16 +993,19 @@
 /* About Section */
 .about-section {
   padding-top: 2rem;
+  overflow: hidden;
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2.5rem;
+  width: 100%;
 }
 
 .about-story-card {
   padding: 2.5rem;
+  width: 100%;
 }
 
 .story-title {
@@ -1016,6 +1019,8 @@
   font-size: 1.05rem;
   line-height: 1.8;
   margin-bottom: 1.25rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .about-info-grid {
@@ -1025,17 +1030,26 @@
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border-color);
+  width: 100%;
 }
 
 .info-item {
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
+  min-width: 0;
 }
 
 .info-icon {
   color: var(--action-color);
   margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.info-content {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .info-label {
@@ -1049,12 +1063,27 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
+  display: block;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.info-val.info-link {
+  color: var(--action-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.info-val.info-link:hover {
+  text-decoration: underline;
+  color: var(--action-hover);
 }
 
 .about-highlights-col {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
 }
 
 .highlight-card {
@@ -1062,6 +1091,7 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
+  width: 100%;
 }
 
 .highlight-icon-box {
@@ -1077,16 +1107,23 @@
   flex-shrink: 0;
 }
 
+.highlight-content {
+  flex: 1;
+  min-width: 0;
+}
+
 .highlight-card-title {
   font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 0.4rem;
+  overflow-wrap: break-word;
 }
 
 .highlight-card-desc {
   font-size: 0.92rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 /* Skills Section */
@@ -2245,25 +2282,15 @@
 
 /* Responsive Media Queries */
 @media (max-width: 1024px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 2.5rem;
-  }
-
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 3rem;
   }
 
   .hero-idcard-wrapper {
     order: -1;
-    margin: 0 auto 1rem auto;
+    margin-bottom: 1.5rem;
   }
 
   .hero-bio {
@@ -2271,18 +2298,17 @@
     margin-right: auto;
   }
 
-  .hero-tech-pills {
-    justify-content: center;
-  }
-
   .hero-ctas,
   .hero-socials {
     justify-content: center;
   }
 
+  .hero-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
   }
 
   .skills-categories-grid,
@@ -2300,14 +2326,10 @@
 }
 
 @media (max-width: 768px) {
-  .section {
-    padding: 4.5rem 0;
-  }
-
   .navbar-header {
-    width: calc(100% - 1.25rem);
-    top: 0.6rem;
-    padding: 0.6rem 1rem;
+    width: calc(100% - 1.5rem);
+    top: 0.75rem;
+    padding: 0.65rem 1.25rem;
     border-radius: var(--radius-lg);
   }
 
@@ -2320,95 +2342,18 @@
     display: block;
   }
 
-  .hero-section {
-    padding-top: 7rem;
-    padding-bottom: 2rem;
-  }
-
   .hero-title {
     font-size: 2.5rem;
   }
 
-  .hero-typewriter {
-    font-size: 1.2rem;
-  }
-
-  .hero-bio {
-    font-size: 1.05rem;
-  }
-
-  .hero-ctas {
-    width: 100%;
-    gap: 0.75rem;
-  }
-
-  .hero-ctas .btn {
-    flex: 1 1 calc(50% - 0.75rem);
-    min-width: 140px;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .download-cv-btn {
-    flex: 1 1 100% !important;
-  }
-
-  /* Hanging Lanyard Card Mobile Scaling */
-  .hero-idcard-wrapper {
-    height: 380px;
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .svg-lanyard-canvas {
-    height: 340px;
-  }
-
-  .white-curved-outer-card {
-    width: 220px;
-    padding: 14px 14px 18px 14px;
-  }
-
   .avatar-image-container {
-    height: 180px;
+    width: 240px;
+    height: 240px;
   }
 
-  .white-card-name {
-    font-size: 1.05rem;
-  }
-
-  .white-card-role {
-    font-size: 0.72rem;
-  }
-
-  .white-meta-label {
-    font-size: 0.55rem;
-  }
-
-  .white-meta-val {
-    font-size: 0.68rem;
-  }
-
-  .floating-badge {
-    padding: 0.4rem 0.75rem;
-  }
-
-  .badge-top-right {
-    top: 5px;
-    right: -10px;
-    transform: scale(0.85);
-  }
-
-  .badge-bottom-left {
-    bottom: 5px;
-    left: -10px;
-    transform: scale(0.85);
-  }
-
-  .hero-metrics-bar {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 1.25rem 1.5rem;
-    gap: 1.25rem;
+  .avatar-glow-ring {
+    width: 260px;
+    height: 260px;
   }
 
   .skills-categories-grid,
@@ -2439,77 +2384,63 @@
   .footer-top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
+  }
+}
+
+/* About Section Mobile Responsiveness Enhancements */
+@media (max-width: 768px) {
+  .about-story-card {
+    padding: 1.75rem 1.25rem;
   }
 
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
+  .story-title {
+    font-size: 1.3rem;
+  }
+
+  .story-text {
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .about-info-grid {
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .highlight-card {
+    padding: 1.25rem;
     gap: 1rem;
+  }
+
+  .highlight-icon-box {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .about-story-card {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .highlight-card {
+    padding: 1.15rem 1rem;
+    gap: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .hero-title {
-    font-size: 2.1rem;
-  }
-
-  .hero-typewriter {
+  .highlight-card-title {
     font-size: 1.05rem;
   }
 
-  .hero-badge {
-    font-size: 0.78rem;
-    padding: 0.35rem 0.85rem;
-  }
-
-  .hero-ctas .btn {
-    flex: 1 1 100%;
-    width: 100%;
-  }
-
-  .hero-metrics-bar {
-    grid-template-columns: 1fr;
-    padding: 1rem 1.25rem;
-    gap: 1rem;
-  }
-
-  .metric-item {
-    gap: 0.75rem;
-  }
-
-  .metric-icon-wrap {
-    width: 38px;
-    height: 38px;
-  }
-
-  .metric-number {
-    font-size: 1.35rem;
-  }
-
-  .metric-label {
-    font-size: 0.78rem;
-  }
-
-  .section-header h2 {
-    font-size: 1.85rem;
-  }
-
-  .section-header p {
-    font-size: 0.95rem;
-  }
-
-  .project-modal-content {
-    padding: 1.25rem;
-    max-width: 95vw;
-    margin: 0.75rem auto;
-  }
-
-  .contact-form {
-    padding: 1.25rem;
+  .highlight-card-desc {
+    font-size: 0.88rem;
   }
 }

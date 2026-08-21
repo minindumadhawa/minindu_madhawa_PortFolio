@@ -48,7 +48,7 @@ export default function About() {
             <div className="about-info-grid">
               <div className="info-item">
                 <MapPin size={18} className="info-icon" />
-                <div>
+                <div className="info-content">
                   <span className="info-label">Location:</span>
                   <span className="info-val">{personalData.location}</span>
                 </div>
@@ -56,15 +56,15 @@ export default function About() {
 
               <div className="info-item">
                 <Mail size={18} className="info-icon" />
-                <div>
+                <div className="info-content">
                   <span className="info-label">Email:</span>
-                  <span className="info-val">{personalData.email}</span>
+                  <a href={`mailto:${personalData.email}`} className="info-val info-link">{personalData.email}</a>
                 </div>
               </div>
 
               <div className="info-item">
                 <GraduationCap size={18} className="info-icon" />
-                <div>
+                <div className="info-content">
                   <span className="info-label">Degree:</span>
                   <span className="info-val">B.Sc. Information Technology</span>
                 </div>
@@ -72,7 +72,7 @@ export default function About() {
 
               <div className="info-item">
                 <Globe size={18} className="info-icon" />
-                <div>
+                <div className="info-content">
                   <span className="info-label">Languages:</span>
                   <span className="info-val">English, Sinhala</span>
                 </div>
@@ -85,7 +85,7 @@ export default function About() {
             {highlights.map((item, idx) => (
               <div key={idx} className="glass-card highlight-card">
                 <div className="highlight-icon-box">{item.icon}</div>
-                <div>
+                <div className="highlight-content">
                   <h4 className="highlight-card-title">{item.title}</h4>
                   <p className="highlight-card-desc">{item.description}</p>
                 </div>
