@@ -8,6 +8,7 @@ import AllProjectsPage from './components/AllProjectsPage';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
 
   return (
     <div className="portfolio-app">
+      <CustomCursor />
       <Navbar 
         theme={theme} 
         toggleTheme={toggleTheme} 

@@ -1,0 +1,93 @@
+/* Custom Stylish Cursor Styles */
+
+@media (pointer: fine) {
+  html, body, button, a, input, textarea, select, [role="button"], .btn, .glass-card {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--action-color, #0076DF);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  opacity: 0;
+  margin-top: -4px;
+  margin-left: -4px;
+  transition: opacity 0.3s ease, background-color 0.2s ease, width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+  box-shadow: 0 0 12px var(--action-color, #0076DF);
+  will-change: transform;
+}
+
+.custom-cursor-dot.visible {
+  opacity: 1;
+}
+
+.custom-cursor-dot.hovered {
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  background-color: #00c6ff;
+  box-shadow: 0 0 14px #00c6ff;
+}
+
+.custom-cursor-dot.clicked {
+  transform: scale(0.6) !important;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--action-color, #0076DF);
+  background: rgba(0, 118, 223, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  opacity: 0;
+  margin-top: -18px;
+  margin-left: -18px;
+  transition: opacity 0.3s ease, width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(1px);
+  will-change: transform;
+}
+
+.custom-cursor-ring.visible {
+  opacity: 0.85;
+}
+
+.custom-cursor-ring.hovered {
+  width: 58px;
+  height: 58px;
+  margin-top: -29px;
+  margin-left: -29px;
+  border-color: #00c6ff;
+  background: rgba(0, 198, 255, 0.15);
+  box-shadow: 0 0 25px rgba(0, 198, 255, 0.35);
+}
+
+.custom-cursor-ring.hover-card {
+  width: 66px;
+  height: 66px;
+  margin-top: -33px;
+  margin-left: -33px;
+  border-color: var(--action-color);
+  background: rgba(0, 118, 223, 0.12);
+  box-shadow: 0 0 20px rgba(0, 118, 223, 0.25);
+}
+
+.custom-cursor-ring.clicked {
+  width: 26px;
+  height: 26px;
+  margin-top: -13px;
+  margin-left: -13px;
+  background: rgba(0, 118, 223, 0.35);
+}
