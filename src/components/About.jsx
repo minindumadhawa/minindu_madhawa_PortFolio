@@ -1,23 +1,31 @@
-import React from 'react';
-import { User, Code2, Rocket, ShieldCheck, MapPin, Mail, GraduationCap, Globe } from 'lucide-react';
+import React, { useState } from 'react';
+import { User, Code2, Rocket, ShieldCheck, MapPin, Mail, GraduationCap, Globe, Copy, Check, ArrowRight } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
 export default function About() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(personalData.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const highlights = [
     {
-      icon: <Code2 size={24} className="highlight-icon" />,
-      title: "Clean Modular Code",
+      icon: <Code2 size={22} className="highlight-icon" />,
+      title: "Clean Modular Architecture",
       description: "Writing scalable, maintainable, and well-documented JavaScript & TypeScript codebases."
     },
     {
-      icon: <Rocket size={24} className="highlight-icon" />,
-      title: "High Performance",
-      description: "Optimizing Web Vitals, dynamic bundling, server rendering, and database query response times."
+      icon: <Rocket size={22} className="highlight-icon" />,
+      title: "High Performance & Speed",
+      description: "Optimizing Core Web Vitals, bundle size, server rendering, and database query latency."
     },
     {
-      icon: <ShieldCheck size={24} className="highlight-icon" />,
+      icon: <ShieldCheck size={22} className="highlight-icon" />,
       title: "UI/UX Craftsmanship",
-      description: "Building responsive, accessible, pixel-perfect user interfaces with sleek micro-interactions."
+      description: "Building mobile-first, pixel-perfect user interfaces with intuitive micro-interactions."
     }
   ];
 
@@ -36,47 +44,73 @@ export default function About() {
         <div className="about-grid">
           {/* Bio Story Card */}
           <div className="glass-card about-story-card">
-            <h3 className="story-title">Engineering Narrative</h3>
+            <div className="story-card-header">
+              <h3 className="story-title">Engineering Narrative</h3>
+              <span className="story-tag">Full-Stack Engineer</span>
+            </div>
+
             <p className="story-text">
-              I am a dedicated <strong>Software Engineer</strong> based in {personalData.location}, deeply engaged with full-stack web development and user interface design.
+              I am a dedicated <strong>Software Engineer</strong> based in {personalData.location}, deeply engaged in full-stack web development and user interface design.
             </p>
             <p className="story-text">
-              My core mission is to solve real-world problems by building robust backend architectures and engaging frontend applications. I thrive in dynamic team environments, continuously experimenting with emerging frameworks and best practices.
+              My core mission is to solve real-world problems by building robust backend architectures and engaging frontend applications. I thrive in dynamic team environments, continuously experimenting with emerging frameworks and industry best practices.
             </p>
 
-            {/* Key Quick Info */}
+            {/* Key Quick Info Grid - Mobile Responsive */}
             <div className="about-info-grid">
               <div className="info-item">
-                <MapPin size={18} className="info-icon" />
+                <div className="info-icon-box">
+                  <MapPin size={16} />
+                </div>
                 <div className="info-content">
-                  <span className="info-label">Location:</span>
+                  <span className="info-label">Location</span>
                   <span className="info-val">{personalData.location}</span>
                 </div>
               </div>
 
               <div className="info-item">
-                <Mail size={18} className="info-icon" />
+                <div className="info-icon-box">
+                  <Mail size={16} />
+                </div>
                 <div className="info-content">
-                  <span className="info-label">Email:</span>
-                  <a href={`mailto:${personalData.email}`} className="info-val info-link">{personalData.email}</a>
+                  <span className="info-label">Email</span>
+                  <span className="info-val info-email" title={personalData.email}>
+                    {personalData.email}
+                  </span>
                 </div>
               </div>
 
               <div className="info-item">
-                <GraduationCap size={18} className="info-icon" />
+                <div className="info-icon-box">
+                  <GraduationCap size={16} />
+                </div>
                 <div className="info-content">
-                  <span className="info-label">Degree:</span>
+                  <span className="info-label">Degree</span>
                   <span className="info-val">B.Sc. Information Technology</span>
                 </div>
               </div>
 
               <div className="info-item">
-                <Globe size={18} className="info-icon" />
+                <div className="info-icon-box">
+                  <Globe size={16} />
+                </div>
                 <div className="info-content">
-                  <span className="info-label">Languages:</span>
+                  <span className="info-label">Languages</span>
                   <span className="info-val">English, Sinhala</span>
                 </div>
               </div>
+            </div>
+
+            {/* Mobile Quick Action Strip */}
+            <div className="about-actions-strip">
+              <button onClick={handleCopyEmail} className="btn btn-secondary about-copy-btn">
+                {copied ? <Check size={16} style={{ color: '#10b981' }} /> : <Copy size={16} />}
+                <span>{copied ? 'Email Copied!' : 'Copy Email'}</span>
+              </button>
+              <a href="#contact" className="btn btn-primary about-cta-btn">
+                <span>Let's Talk</span>
+                <ArrowRight size={16} />
+              </a>
             </div>
           </div>
 

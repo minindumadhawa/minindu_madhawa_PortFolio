@@ -993,25 +993,44 @@
 /* About Section */
 .about-section {
   padding-top: 2rem;
-  overflow: hidden;
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 2.5rem;
-  width: 100%;
+  align-items: start;
 }
 
 .about-story-card {
   padding: 2.5rem;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.story-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .story-title {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1.25rem;
+}
+
+.story-tag {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  background: var(--action-light);
+  color: var(--action-color);
+  border: 1px solid var(--action-border);
 }
 
 .story-text {
@@ -1019,71 +1038,94 @@
   font-size: 1.05rem;
   line-height: 1.8;
   margin-bottom: 1.25rem;
-  overflow-wrap: break-word;
-  word-break: break-word;
 }
 
+/* Info Grid - Mobile First Responsive */
 .about-info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-  padding-top: 2rem;
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.75rem;
   border-top: 1px solid var(--border-color);
-  width: 100%;
 }
 
 .info-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.85rem;
-  min-width: 0;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
 }
 
-.info-icon {
+.info-item:hover {
+  background: var(--action-light);
+  border-color: var(--action-border);
+  transform: translateY(-2px);
+}
+
+.info-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--action-light);
+  border: 1px solid var(--action-border);
   color: var(--action-color);
-  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
 .info-content {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-  overflow: hidden;
 }
 
 .info-label {
-  display: block;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .info-val {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
   color: var(--text-primary);
-  display: block;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.info-val.info-link {
+.info-email {
   color: var(--action-color);
-  text-decoration: none;
-  transition: color var(--transition-fast);
 }
 
-.info-val.info-link:hover {
-  text-decoration: underline;
-  color: var(--action-hover);
+/* Action Strip inside About Card */
+.about-actions-strip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.about-copy-btn,
+.about-cta-btn {
+  padding: 0.65rem 1.35rem;
+  font-size: 0.88rem;
 }
 
 .about-highlights-col {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  width: 100%;
 }
 
 .highlight-card {
@@ -1091,7 +1133,6 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
-  width: 100%;
 }
 
 .highlight-icon-box {
@@ -1105,25 +1146,23 @@
   justify-content: center;
   color: var(--action-color);
   flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 118, 223, 0.2);
 }
 
 .highlight-content {
   flex: 1;
-  min-width: 0;
 }
 
 .highlight-card-title {
   font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 0.4rem;
-  overflow-wrap: break-word;
 }
 
 .highlight-card-desc {
   font-size: 0.92rem;
   color: var(--text-secondary);
   line-height: 1.6;
-  overflow-wrap: break-word;
 }
 
 /* Skills Section */
@@ -2387,25 +2426,45 @@
   }
 }
 
-/* About Section Mobile Responsiveness Enhancements */
+/* About Section Mobile Responsive Breakpoints */
 @media (max-width: 768px) {
   .about-story-card {
-    padding: 1.75rem 1.25rem;
+    padding: 1.6rem 1.25rem;
+  }
+
+  .story-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .story-title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 
   .story-text {
     font-size: 0.98rem;
-    line-height: 1.7;
+    line-height: 1.65;
   }
 
   .about-info-grid {
-    gap: 1.25rem;
-    padding-top: 1.5rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    padding-top: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .info-item {
+    padding: 0.6rem 0.75rem;
+  }
+
+  .info-icon-box {
+    width: 32px;
+    height: 32px;
+  }
+
+  .info-val {
+    font-size: 0.88rem;
   }
 
   .highlight-card {
@@ -2419,23 +2478,34 @@
   }
 }
 
-@media (max-width: 640px) {
-  .about-info-grid {
-    grid-template-columns: 1fr;
-    gap: 1.15rem;
+@media (max-width: 576px) {
+  .about-story-card {
+    padding: 1.25rem 1rem;
   }
 
-  .about-story-card {
-    padding: 1.4rem 1.1rem;
+  .about-info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .about-actions-strip {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .about-copy-btn,
+  .about-cta-btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .highlight-card {
+    flex-direction: row;
+    align-items: flex-start;
     padding: 1.15rem 1rem;
-    gap: 0.85rem;
   }
-}
 
-@media (max-width: 480px) {
   .highlight-card-title {
     font-size: 1.05rem;
   }
