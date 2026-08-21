@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Copy, Check, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Copy, Check, MessageSquare, ExternalLink } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
 export default function Contact() {
@@ -9,7 +9,8 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
-  const handleCopyEmail = () => {
+  const handleCopyEmail = (e) => {
+    e.preventDefault();
     navigator.clipboard.writeText(personalData.email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -113,7 +114,7 @@ export default function Contact() {
             </p>
 
             <div className="contact-info-list">
-              {/* Email with copy button */}
+              {/* Email with direct mailto & copy button */}
               <div className="contact-info-item">
                 <div className="info-icon-wrapper">
                   <Mail size={20} />
@@ -121,26 +122,31 @@ export default function Contact() {
                 <div className="info-text-box">
                   <span className="info-label">Email Address</span>
                   <div className="email-copy-wrap">
-                    <span className="info-val">{personalData.email}</span>
+                    <a href={`mailto:${personalData.email}`} className="info-val info-link" title="Send Email">
+                      {personalData.email}
+                    </a>
                     <button 
                       onClick={handleCopyEmail}
                       className="copy-btn"
-                      title="Copy Email"
+                      title="Copy Email to Clipboard"
                     >
-                      {copied ? <Check size={16} className="text-green" /> : <Copy size={16} />}
+                      {copied ? <Check size={16} style={{ color: '#10b981' }} /> : <Copy size={16} />}
                     </button>
                   </div>
                 </div>
               </div>
 
-              {/* Phone */}
+              {/* Phone with tap to call */}
               <div className="contact-info-item">
                 <div className="info-icon-wrapper">
                   <Phone size={20} />
                 </div>
                 <div className="info-text-box">
-                  <span className="info-label">Phone</span>
-                  <span className="info-val">{personalData.phone}</span>
+                  <span className="info-label">Phone / WhatsApp</span>
+                  <a href={`tel:${personalData.phone}`} className="info-val info-link">
+                    {personalData.phone}
+                    <ExternalLink size={13} className="inline-link-icon" />
+                  </a>
                 </div>
               </div>
 
@@ -189,7 +195,7 @@ export default function Contact() {
 
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="name">Your Name</label>
+                  <label htmlFor="name">Your Name *</label>
                   <input
                     type="text"
                     id="name"
@@ -201,7 +207,7 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Your Email</label>
+                  <label htmlFor="email">Your Email *</label>
                   <input
                     type="email"
                     id="email"
@@ -225,10 +231,10 @@ export default function Contact() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">Message *</label>
                 <textarea
                   id="message"
-                  rows="5"
+                  rows="4"
                   required
                   placeholder="Hi Minindu, I would like to discuss..."
                   value={formData.message}
