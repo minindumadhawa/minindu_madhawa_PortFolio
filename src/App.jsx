@@ -16,7 +16,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'all-projects'
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('minindu_portfolio_theme') || 'dark';
+    return localStorage.getItem('minindu_portfolio_theme') || 'light';
   });
 
   useEffect(() => {

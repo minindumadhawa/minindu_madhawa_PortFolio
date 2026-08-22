@@ -133,6 +133,9 @@ export default function Hero() {
   useEffect(() => {
     const handleMove = (e) => {
       if (!isDragging) return;
+      if (e.cancelable) {
+        e.preventDefault();
+      }
       const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
       const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
 
@@ -156,7 +159,7 @@ export default function Hero() {
     if (isDragging) {
       window.addEventListener('mousemove', handleMove);
       window.addEventListener('mouseup', handleEnd);
-      window.addEventListener('touchmove', handleMove);
+      window.addEventListener('touchmove', handleMove, { passive: false });
       window.addEventListener('touchend', handleEnd);
     }
 

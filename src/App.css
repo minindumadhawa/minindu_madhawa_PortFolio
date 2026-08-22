@@ -496,6 +496,7 @@
   transform-origin: top center;
   z-index: 4;
   user-select: none;
+  touch-action: none;
 }
 
 .avatar-glow-ring {
