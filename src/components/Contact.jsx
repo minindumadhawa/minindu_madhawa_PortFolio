@@ -125,7 +125,7 @@ export default function Contact() {
                     <a href={`mailto:${personalData.email}`} className="info-val info-link" title="Send Email">
                       {personalData.email}
                     </a>
-                    <button 
+                    <button
                       onClick={handleCopyEmail}
                       className="copy-btn"
                       title="Copy Email to Clipboard"
@@ -200,7 +200,7 @@ export default function Contact() {
                     type="text"
                     id="name"
                     required
-                    placeholder="Minindu Madhawa"
+                    placeholder="Mahinda Rajapaksha"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
@@ -212,7 +212,7 @@ export default function Contact() {
                     type="email"
                     id="email"
                     required
-                    placeholder="name@example.com"
+                    placeholder="mahinda@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
@@ -236,7 +236,7 @@ export default function Contact() {
                   id="message"
                   rows="4"
                   required
-                  placeholder="Hi Minindu, I would like to discuss..."
+                  placeholder="Hi Mahinda, I would like to discuss..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
