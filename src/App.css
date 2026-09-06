@@ -184,11 +184,9 @@
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(
-    650px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
-    rgba(0, 118, 223, 0.14),
-    transparent 70%
-  );
+  background: radial-gradient(650px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgba(0, 118, 223, 0.14),
+      transparent 70%);
   transition: opacity 0.5s ease;
 }
 
@@ -239,7 +237,9 @@
 }
 
 @keyframes radarPing {
-  75%, 100% {
+
+  75%,
+  100% {
     transform: scale(2.2);
     opacity: 0;
   }
@@ -258,7 +258,7 @@
   font-family: var(--font-mono);
   color: var(--text-secondary);
   margin-bottom: 1.25rem;
-  min-height: 2.2rem;
+  min-height: 4.9rem;
 }
 
 .typewriter-text {
@@ -388,6 +388,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
+
   .metric-divider {
     display: none;
   }
@@ -2576,12 +2577,14 @@
 
   .form-group input,
   .form-group textarea {
-    font-size: 16px; /* Prevents auto-zoom on iOS/Chrome mobile */
+    font-size: 16px;
+    /* Prevents auto-zoom on iOS/Chrome mobile */
     padding: 0.8rem 1rem;
   }
 }
 
 @media (max-width: 576px) {
+
   .contact-info-card,
   .contact-form-card {
     padding: 1.25rem 1rem;
