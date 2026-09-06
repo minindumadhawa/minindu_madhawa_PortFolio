@@ -1736,6 +1736,11 @@
 
 .card-icon-link {
   color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   transition: color var(--transition-fast);
 }
 

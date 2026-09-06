@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Search, Eye, Sparkles, ExternalLink, FolderGit2, Layers } from 'lucide-react';
+import { ArrowLeft, Search, ExternalLink, FolderGit2, Layers } from 'lucide-react';
 import { Github } from './SocialIcons';
 import { projectsData } from '../data/portfolioData';
-import ProjectModal from './ProjectModal';
 import DesktopMockup from './DesktopMockup';
 
 export default function AllProjectsPage({ onBackToHome }) {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedProject, setSelectedProject] = useState(null);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -92,21 +90,11 @@ export default function AllProjectsPage({ onBackToHome }) {
                   title={project.title}
                   demoUrl={project.demoUrl}
                   category={project.category}
-                >
-                  <div className="project-img-overlay">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="overlay-view-btn btn btn-primary"
-                    >
-                      <Eye size={18} />
-                      <span>View Case Study</span>
-                    </button>
-                  </div>
-                </DesktopMockup>
+                />
 
                 {/* Card Body */}
                 <div className="project-card-body">
-                  <h3 className="project-title" onClick={() => setSelectedProject(project)}>
+                  <h3 className="project-title">
                     {project.title}
                   </h3>
                   <p className="project-desc">{project.description}</p>
@@ -121,19 +109,10 @@ export default function AllProjectsPage({ onBackToHome }) {
 
                   {/* Card Footer */}
                   <div className="project-card-footer">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="details-link"
-                    >
-                      Details <Sparkles size={14} />
-                    </button>
-
                     <div className="project-card-socials">
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="card-icon-link" title="GitHub">
-                        <Github size={18} />
-                      </a>
-                      <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="card-icon-link" title="Live Demo">
-                        <ExternalLink size={18} />
+                        <Github size={15} />
+                        <span>Code</span>
                       </a>
                     </div>
                   </div>
@@ -160,11 +139,6 @@ export default function AllProjectsPage({ onBackToHome }) {
           </button>
         </div>
       </div>
-
-      {/* Detail Modal */}
-      {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-      )}
     </div>
   );
 }

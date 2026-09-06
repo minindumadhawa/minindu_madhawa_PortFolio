@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { FolderGit2, ExternalLink, Eye, Sparkles, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { FolderGit2, ExternalLink, ArrowRight } from 'lucide-react';
 import { Github } from './SocialIcons';
 import { projectsData } from '../data/portfolioData';
-import ProjectModal from './ProjectModal';
 import DesktopMockup from './DesktopMockup';
 
 export default function Projects({ onViewAllProjects }) {
-  const [selectedProject, setSelectedProject] = useState(null);
-
   // Display top 3 main projects on the Home Page
   const featuredProjects = projectsData.slice(0, 3);
 
@@ -33,21 +30,11 @@ export default function Projects({ onViewAllProjects }) {
                 title={project.title}
                 demoUrl={project.demoUrl}
                 category={project.category}
-              >
-                <div className="project-img-overlay">
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="overlay-view-btn btn btn-primary"
-                  >
-                    <Eye size={18} />
-                    <span>View Case Study</span>
-                  </button>
-                </div>
-              </DesktopMockup>
+              />
 
               {/* Card Body */}
               <div className="project-card-body">
-                <h3 className="project-title" onClick={() => setSelectedProject(project)}>
+                <h3 className="project-title">
                   {project.title}
                 </h3>
                 <p className="project-desc">{project.description}</p>
@@ -62,19 +49,10 @@ export default function Projects({ onViewAllProjects }) {
 
                 {/* Bottom Card Footer */}
                 <div className="project-card-footer">
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="details-link"
-                  >
-                    Details <Sparkles size={14} />
-                  </button>
-
                   <div className="project-card-socials">
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="card-icon-link" title="GitHub">
-                      <Github size={18} />
-                    </a>
-                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="card-icon-link" title="Live Demo">
-                      <ExternalLink size={18} />
+                      <Github size={15} />
+                      <span>Code</span>
                     </a>
                   </div>
                 </div>
@@ -91,11 +69,6 @@ export default function Projects({ onViewAllProjects }) {
           </button>
         </div>
       </div>
-
-      {/* Detail Modal */}
-      {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-      )}
     </section>
   );
 }
