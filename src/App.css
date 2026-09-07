@@ -1591,12 +1591,7 @@
   font-weight: 700;
   margin-bottom: 0;
   cursor: default;
-  transition: color var(--transition-fast);
   color: var(--text-primary);
-}
-
-.project-card:hover .project-title {
-  color: var(--action-color);
 }
 
 .project-desc {
