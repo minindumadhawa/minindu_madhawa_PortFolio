@@ -1298,10 +1298,10 @@
 
 .desktop-window-frame {
   width: 100%;
-  background: #0f172a;
-  border-radius: 12px 12px 6px 6px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), 0 0 25px rgba(0, 118, 223, 0.15);
+  background: #ffffff;
+  border-radius: 14px;
+  border: 4px solid #e2e8f0;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35), 0 0 25px rgba(255, 255, 255, 0.15);
   overflow: hidden;
   position: relative;
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
@@ -1309,14 +1309,14 @@
 
 .project-card:hover .desktop-window-frame {
   transform: translateY(-2px);
-  border-color: var(--action-border);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 118, 223, 0.3);
+  border-color: #e2e8f0;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 255, 255, 0.3);
 }
 
 .desktop-window-header {
   height: 38px;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1366,7 +1366,7 @@
 .nav-icon-btn {
   background: none;
   border: none;
-  color: #64748b;
+  color: #475569;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1375,12 +1375,17 @@
   cursor: pointer;
 }
 
+.nav-icon-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
 .window-url-bar {
   flex: 1;
   max-width: 380px;
   height: 24px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -1391,14 +1396,15 @@
 }
 
 .url-lock-icon {
-  color: var(--accent-emerald);
+  color: #059669;
   flex-shrink: 0;
 }
 
 .url-text {
   font-size: 0.72rem;
   font-family: var(--font-mono);
-  color: #cbd5e1;
+  color: #334155;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1408,11 +1414,11 @@
 .window-actions {
   display: flex;
   align-items: center;
-  color: #64748b;
+  color: #475569;
 }
 
 .window-globe-icon {
-  color: #64748b;
+  color: #475569;
 }
 
 .desktop-screen {
@@ -1420,7 +1426,7 @@
   width: 100%;
   height: 210px;
   overflow: hidden;
-  background: #090d16;
+  background: #f8fafc;
 }
 
 .is-modal-mockup .desktop-screen {
@@ -1446,7 +1452,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 50%);
   pointer-events: none;
 }
 
@@ -1456,13 +1462,13 @@
   right: 0.75rem;
   padding: 0.25rem 0.7rem;
   border-radius: var(--radius-full);
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--action-border);
+  border: 1px solid #cbd5e1;
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--action-color);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #0284c7;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   z-index: 2;
 }
 
@@ -1478,18 +1484,18 @@
 .desktop-stand-neck {
   width: 50px;
   height: 14px;
-  background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
 }
 
 .desktop-stand-foot {
   width: 110px;
   height: 5px;
-  background: linear-gradient(90deg, #1e293b 0%, #475569 50%, #1e293b 100%);
+  background: linear-gradient(90deg, #cbd5e1 0%, #ffffff 50%, #cbd5e1 100%);
   border-radius: 4px 4px 2px 2px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-top: 1px solid #ffffff;
 }
 
 /* Modal Desktop Wrapper */
