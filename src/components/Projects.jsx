@@ -64,7 +64,7 @@ export default function Projects({ onViewAllProjects }) {
         {/* View All Projects CTA */}
         <div className="view-all-projects-wrapper">
           <button onClick={onViewAllProjects} className="btn btn-primary view-all-btn">
-            <span>View All Projects</span>
+            <span>Recent Projects</span>
             <ArrowRight size={18} />
           </button>
         </div>

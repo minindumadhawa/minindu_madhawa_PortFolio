@@ -42,7 +42,7 @@ export default function AllProjectsPage({ onBackToHome }) {
             <FolderGit2 size={16} />
             <span>Complete Showcase</span>
           </div>
-          <h2>All My <span className="gradient-text">Projects & Products</span></h2>
+          <h2>Recent <span className="gradient-text">Projects & Products</span></h2>
           <p>Explore the complete collection of web platforms, full-stack applications, and mobile software.</p>
         </div>
 
