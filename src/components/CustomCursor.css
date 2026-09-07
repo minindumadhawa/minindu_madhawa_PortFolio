@@ -1,7 +1,7 @@
 /* Custom Stylish Cursor Styles */
 
 @media (pointer: fine) {
-  html, body, button, a, input, textarea, select, [role="button"], .btn, .glass-card {
+  *, html, body, button, a, input, textarea, select, [role="button"], .btn, .glass-card, .project-title {
     cursor: none !important;
   }
 }

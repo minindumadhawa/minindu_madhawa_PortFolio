@@ -1596,7 +1596,7 @@
   font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 0;
-  cursor: default;
+  cursor: pointer;
   color: var(--text-primary);
 }
 
