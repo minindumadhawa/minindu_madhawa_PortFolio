@@ -1308,7 +1308,7 @@
 }
 
 .project-card:hover .desktop-window-frame {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   border-color: var(--action-border);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 118, 223, 0.3);
 }
