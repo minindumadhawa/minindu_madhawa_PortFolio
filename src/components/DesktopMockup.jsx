@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, RotateCw, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
+import { Lock, RotateCw, ChevronLeft, ChevronRight, Globe, Eye } from 'lucide-react';
 
 export default function DesktopMockup({ 
   image, 
@@ -7,9 +7,16 @@ export default function DesktopMockup({
   demoUrl = '#', 
   category, 
   onViewDetails, 
+  onClick,
   isModal = false,
   children 
 }) {
+  const handleClick = (e) => {
+    if (e) e.stopPropagation();
+    if (onViewDetails) onViewDetails(e);
+    else if (onClick) onClick(e);
+  };
+
   // Format display URL for the desktop mockup address bar
   const getDisplayUrl = (url) => {
     if (!url || url === '#') return 'https://localhost:3000';
@@ -28,7 +35,10 @@ export default function DesktopMockup({
   const formattedUrl = getDisplayUrl(demoUrl);
 
   return (
-    <div className={`desktop-mockup-container ${isModal ? 'is-modal-mockup' : 'is-card-mockup'}`}>
+    <div 
+      className={`desktop-mockup-container ${isModal ? 'is-modal-mockup' : 'is-card-mockup'} ${(onViewDetails || onClick) ? 'is-clickable' : ''}`}
+      onClick={handleClick}
+    >
       {/* Desktop Window Frame */}
       <div className="desktop-window-frame">
         {/* Top Window Bar / macOS Browser Chrome */}
@@ -71,6 +81,16 @@ export default function DesktopMockup({
           
           {/* Subtle Glare overlay */}
           <div className="desktop-screen-glare"></div>
+
+          {/* View Details hover overlay for cards */}
+          {!isModal && (
+            <div className="desktop-screen-hover-overlay">
+              <div className="view-details-pill">
+                <Eye size={16} />
+                <span>View Full Details</span>
+              </div>
+            </div>
+          )}
 
           {/* Category Badge overlay if present */}
           {category && !isModal && (

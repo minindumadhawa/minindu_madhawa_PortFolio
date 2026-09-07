@@ -1,10 +1,12 @@
-import React from 'react';
-import { FolderGit2, ExternalLink, ArrowRight } from 'lucide-react';
-import { Github } from './SocialIcons';
+import React, { useState } from 'react';
+import { FolderGit2, ArrowRight } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import DesktopMockup from './DesktopMockup';
+import ProjectModal from './ProjectModal';
 
 export default function Projects({ onViewAllProjects }) {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   // Display top 3 main projects on the Home Page
   const featuredProjects = projectsData.slice(0, 3);
 
@@ -30,32 +32,14 @@ export default function Projects({ onViewAllProjects }) {
                 title={project.title}
                 demoUrl={project.demoUrl}
                 category={project.category}
+                onViewDetails={() => setSelectedProject(project)}
               />
 
-              {/* Card Body */}
+              {/* Card Body - ONLY Title / Name */}
               <div className="project-card-body">
                 <h3 className="project-title">
                   {project.title}
                 </h3>
-                <p className="project-desc">{project.description}</p>
-
-                {/* Tech tags */}
-                <div className="project-tags">
-                  {project.tags.slice(0, 4).map((tag, idx) => (
-                    <span key={idx} className="tag-pill">{tag}</span>
-                  ))}
-                  {project.tags.length > 4 && <span className="tag-pill">+{project.tags.length - 4}</span>}
-                </div>
-
-                {/* Bottom Card Footer */}
-                <div className="project-card-footer">
-                  <div className="project-card-socials">
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="card-icon-link" title="GitHub">
-                      <Github size={15} />
-                      <span>Code</span>
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           ))}
@@ -69,6 +53,14 @@ export default function Projects({ onViewAllProjects }) {
           </button>
         </div>
       </div>
+
+      {/* Project Full Details Modal */}
+      {selectedProject && (
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />
+      )}
     </section>
   );
 }
