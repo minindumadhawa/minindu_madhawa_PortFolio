@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ExternalLink, CheckCircle, Tag } from 'lucide-react';
+import { X, CheckCircle, Tag } from 'lucide-react';
 import { Github } from './SocialIcons';
 import DesktopMockup from './DesktopMockup';
 
@@ -75,20 +75,14 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Action Links */}
-          <div className="modal-actions">
-            {project.demoUrl && (
-              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                <ExternalLink size={18} />
-                <span>Live Demo</span>
-              </a>
-            )}
-            {project.githubUrl && (
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
-                <Github size={18} />
+          {project.githubUrl && (
+            <div className="modal-actions">
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary source-btn">
+                <Github size={15} />
                 <span>Source Code</span>
               </a>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
