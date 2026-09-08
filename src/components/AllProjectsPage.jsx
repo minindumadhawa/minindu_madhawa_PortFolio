@@ -84,7 +84,11 @@ export default function AllProjectsPage({ onBackToHome }) {
         {filteredProjects.length > 0 ? (
           <div className="projects-grid">
             {filteredProjects.map((project) => (
-              <div key={project.id} className="glass-card project-card">
+              <div 
+                key={project.id} 
+                className="glass-card project-card"
+                onClick={() => setSelectedProject(project)}
+              >
                 {/* Desktop Mockup Preview */}
                 <DesktopMockup
                   image={project.image}

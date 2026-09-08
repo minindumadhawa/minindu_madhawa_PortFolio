@@ -35,7 +35,7 @@ export default function CustomCursor() {
     const handleMouseOver = (e) => {
       const target = e.target;
       const interactiveEl = target.closest(
-        'a, button, input, textarea, select, .btn, .glass-card, [role="button"], .interactive, .project-card, .social-icon, .nav-link'
+        'a, button, input, textarea, select, .btn, .glass-card, [role="button"], .interactive, .project-card, .social-icon, .nav-link, .modal-close-btn, .view-details-pill'
       );
 
       if (interactiveEl) {

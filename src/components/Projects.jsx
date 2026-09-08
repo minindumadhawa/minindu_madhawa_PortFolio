@@ -25,7 +25,11 @@ export default function Projects({ onViewAllProjects }) {
         {/* Projects Grid (Main 3 Projects) */}
         <div className="projects-grid">
           {featuredProjects.map((project) => (
-            <div key={project.id} className="glass-card project-card">
+            <div 
+              key={project.id} 
+              className="glass-card project-card"
+              onClick={() => setSelectedProject(project)}
+            >
               {/* Desktop Mockup Preview */}
               <DesktopMockup
                 image={project.image}

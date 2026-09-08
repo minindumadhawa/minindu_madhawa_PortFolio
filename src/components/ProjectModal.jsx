@@ -6,13 +6,19 @@ import DesktopMockup from './DesktopMockup';
 export default function ProjectModal({ project, onClose }) {
   if (!project) return null;
 
-  // ESC key listener
+  // Body scroll lock & ESC key listener
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
     };
+
+    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [onClose]);
 
   return (
