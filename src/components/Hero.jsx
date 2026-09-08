@@ -238,7 +238,7 @@ export default function Hero() {
             <div className="hero-ctas">
               <a href="#projects" className="btn btn-primary hero-btn-main">
                 <span>View Projects</span>
-                <ArrowRight size={18} className="btn-arrow-icon" />
+                <ArrowRight size={16} className="btn-arrow-icon" />
               </a>
               <a href="#contact" className="btn btn-secondary">
                 <span>Contact Me</span>
@@ -253,7 +253,7 @@ export default function Hero() {
                   }
                 }}
               >
-                <Download size={18} />
+                <Download size={16} />
                 <span>Resume</span>
               </a>
             </div>
