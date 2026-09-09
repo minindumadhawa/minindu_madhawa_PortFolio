@@ -1,15 +1,19 @@
 import React from 'react';
-import { Sparkles, Layout, Smartphone, Cpu, Zap, ArrowUpRight } from 'lucide-react';
+import { Sparkles, Layout, Smartphone, Cpu, Zap, ArrowUpRight, Globe, Layers, Palette, Server } from 'lucide-react';
 import { servicesData } from '../data/portfolioData';
 
 const IconRenderer = ({ iconName }) => {
   const map = {
-    Layout: <Layout size={28} className="service-card-icon" />,
-    Smartphone: <Smartphone size={28} className="service-card-icon" />,
-    Cpu: <Cpu size={28} className="service-card-icon" />,
-    Zap: <Zap size={28} className="service-card-icon" />
+    Layout: <Layout size={26} className="service-card-icon" />,
+    Smartphone: <Smartphone size={26} className="service-card-icon" />,
+    Cpu: <Cpu size={26} className="service-card-icon" />,
+    Zap: <Zap size={26} className="service-card-icon" />,
+    Globe: <Globe size={26} className="service-card-icon" />,
+    Layers: <Layers size={26} className="service-card-icon" />,
+    Palette: <Palette size={26} className="service-card-icon" />,
+    Server: <Server size={26} className="service-card-icon" />
   };
-  return map[iconName] || <Sparkles size={28} className="service-card-icon" />;
+  return map[iconName] || <Sparkles size={26} className="service-card-icon" />;
 };
 
 export default function Services() {
@@ -36,7 +40,7 @@ export default function Services() {
               
               <a href="#contact" className="service-action-link">
                 <span>Inquire Service</span>
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={16} className="service-link-arrow" />
               </a>
             </div>
           ))}

@@ -217,21 +217,21 @@ export const servicesData = [
   {
     icon: "Layout",
     title: "Full-Stack Web Development",
-    description: "End-to-end modern web app development using React, Node.js, Express, and cloud databases with fast load speeds."
+    description: "Building responsive, modern single-page applications and web systems using React, Node.js, Express, and cloud databases engineered for high performance."
   },
   {
     icon: "Smartphone",
-    title: "Responsive UI/UX Frontend",
-    description: "Crafting visually striking, accessible, mobile-first web interfaces with smooth CSS animations and glassmorphism styling."
+    title: "Mobile App Development",
+    description: "Crafting native Android applications with Kotlin and cross-platform mobile software using Flutter & React Native with smooth UI and offline sync."
   },
   {
     icon: "Cpu",
-    title: "API Design & Backend Services",
-    description: "Designing secure, structured RESTful & GraphQL APIs, authentication flows, and database schemas built for scale."
+    title: "API Design & Backend Systems",
+    description: "Architecting secure, high-performance RESTful & GraphQL APIs, microservices, and database models (MongoDB, PostgreSQL, MySQL) built to scale."
   },
   {
     icon: "Zap",
-    title: "Performance & SEO Optimization",
-    description: "Auditing existing codebases to optimize Core Web Vitals, page speed, accessibility standards, and SEO rankings."
+    title: "UI/UX & Performance Optimization",
+    description: "Designing sleek glassmorphism interfaces in Figma, auditing codebases to maximize Core Web Vitals, page load speed, and SEO rankings."
   }
 ];
