@@ -46,6 +46,15 @@ export const skillsData = [
     ]
   },
   {
+    category: "Mobile App Development",
+    skills: [
+      { name: "Kotlin (Android Native)", level: 88, icon: "Smartphone" },
+      { name: "Flutter & Dart", level: 85, icon: "Zap" },
+      { name: "React Native", level: 82, icon: "Code2" },
+      { name: "Mobile UI/UX & SQLite", level: 86, icon: "Layers" }
+    ]
+  },
+  {
     category: "Tools & Cloud Architecture",
     skills: [
       { name: "Git / GitHub Version Control", level: 94, icon: "GitBranch" },

@@ -1177,8 +1177,8 @@
 /* Skills Section - Simple & Modern Redesign */
 .skills-categories-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
 }
 
 .skill-category-card {

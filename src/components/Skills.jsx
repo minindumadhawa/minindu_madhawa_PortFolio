@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Code2, Server, Database, GitBranch, Terminal, Layers, Cloud, Flame, Webhook, Box, Palette, FileCode, Layout } from 'lucide-react';
+import { Cpu, Code2, Server, Database, GitBranch, Terminal, Layers, Cloud, Flame, Webhook, Box, Palette, FileCode, Layout, Smartphone, Zap } from 'lucide-react';
 import { Figma } from './SocialIcons';
 import { skillsData } from '../data/portfolioData';
 
@@ -19,13 +19,16 @@ const IconRenderer = ({ iconName }) => {
     Cloud: <Cloud size={16} />,
     Figma: <Figma size={16} />,
     Layout: <Layout size={16} />,
-    Cpu: <Cpu size={16} />
+    Cpu: <Cpu size={16} />,
+    Smartphone: <Smartphone size={16} />,
+    Zap: <Zap size={16} />
   };
   return iconMap[iconName] || <Terminal size={16} />;
 };
 
 // Category Icon Helper
-const CategoryIcon = ({ index }) => {
+const CategoryIcon = ({ category, index }) => {
+  if (category?.toLowerCase().includes('mobile') || category?.toLowerCase().includes('app')) return <Smartphone size={22} />;
   if (index === 0) return <Layout size={22} />;
   if (index === 1) return <Server size={22} />;
   return <Cpu size={22} />;
@@ -51,7 +54,7 @@ export default function Skills() {
               {/* Category Header */}
               <div className="skill-cat-header">
                 <div className="skill-cat-icon">
-                  <CategoryIcon index={index} />
+                  <CategoryIcon category={categoryGroup.category} index={index} />
                 </div>
                 <div className="skill-cat-info">
                   <h3>{categoryGroup.category}</h3>
