@@ -130,7 +130,7 @@ export default function Contact() {
                       className="copy-btn"
                       title="Copy Email to Clipboard"
                     >
-                      {copied ? <Check size={16} style={{ color: '#10b981' }} /> : <Copy size={16} />}
+                      {copied ? <Check size={16} style={{ color: '#835B40' }} /> : <Copy size={16} />}
                     </button>
                   </div>
                 </div>

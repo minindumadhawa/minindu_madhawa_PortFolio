@@ -104,7 +104,7 @@ export default function About() {
             {/* Mobile Quick Action Strip */}
             <div className="about-actions-strip">
               <button onClick={handleCopyEmail} className="btn btn-secondary about-copy-btn">
-                {copied ? <Check size={16} style={{ color: '#10b981' }} /> : <Copy size={16} />}
+                {copied ? <Check size={16} style={{ color: '#835B40' }} /> : <Copy size={16} />}
                 <span>{copied ? 'Email Copied!' : 'Copy Email'}</span>
               </button>
               <a href="#contact" className="btn btn-primary about-cta-btn">

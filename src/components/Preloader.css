@@ -6,7 +6,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--bg-primary, #080b11);
+  background-color: var(--bg-primary, #1D1C1A);
   z-index: 9999999;
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@
   transform: translate(-50%, -50%);
   width: 100px;
   height: 100px;
-  background: rgba(0, 118, 223, 0.4);
+  background: rgba(131, 91, 64, 0.4);
   border-radius: 50%;
   filter: blur(35px);
   animation: pulseGlow 2s ease-in-out infinite;
@@ -56,13 +56,13 @@
   width: 64px;
   height: 64px;
   border-radius: var(--radius-md, 16px);
-  background: var(--glass-bg, rgba(14, 20, 32, 0.8));
-  border: 1px solid var(--action-border, rgba(0, 118, 223, 0.4));
+  background: var(--glass-bg, rgba(39, 37, 35, 0.8));
+  border: 1px solid var(--action-border, rgba(131, 91, 64, 0.4));
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--action-color, #0076DF);
-  box-shadow: 0 10px 30px rgba(0, 118, 223, 0.25);
+  color: var(--action-color, #835B40);
+  box-shadow: 0 10px 30px rgba(131, 91, 64, 0.25);
   animation: logoFloat 3s ease-in-out infinite;
 }
 
@@ -74,7 +74,7 @@
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0.15em;
-  color: var(--text-primary, #ffffff);
+  color: var(--text-primary, #D3C9C0);
   margin-bottom: 2rem;
   font-family: var(--font-main);
 }
@@ -82,7 +82,7 @@
 .preloader-progress-track {
   width: 100%;
   height: 4px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(211, 201, 192, 0.1);
   border-radius: var(--radius-full, 9999px);
   overflow: hidden;
   position: relative;
@@ -91,10 +91,10 @@
 
 .preloader-progress-fill {
   height: 100%;
-  background: var(--accent-gradient, linear-gradient(135deg, #0076DF 0%, #00c6ff 100%));
+  background: var(--accent-gradient, linear-gradient(135deg, #835B40 0%, #A47453 100%));
   border-radius: var(--radius-full, 9999px);
   transition: width 0.05s linear;
-  box-shadow: 0 0 12px var(--action-color, #0076DF);
+  box-shadow: 0 0 12px var(--action-color, #835B40);
 }
 
 .preloader-meta {
@@ -104,7 +104,7 @@
   justify-content: space-between;
   font-size: 0.85rem;
   font-family: var(--font-mono);
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary, #B5A99F);
 }
 
 .preloader-status {
@@ -113,7 +113,7 @@
 
 .preloader-percentage {
   font-weight: 600;
-  color: var(--action-color, #0076DF);
+  color: var(--action-color, #835B40);
 }
 
 @keyframes logoFloat {

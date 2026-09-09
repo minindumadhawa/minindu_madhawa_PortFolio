@@ -282,9 +282,9 @@ export default function Hero() {
             <svg className="svg-lanyard-canvas" viewBox="0 -160 320 600">
               <defs>
                 <linearGradient id="lanyardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0076DF" stopOpacity="0.95" />
-                  <stop offset="50%" stopColor="#00c6ff" stopOpacity="0.85" />
-                  <stop offset="100%" stopColor="#0076DF" stopOpacity="0.9" />
+                  <stop offset="0%" stopColor="#835B40" stopOpacity="0.95" />
+                  <stop offset="50%" stopColor="#A47453" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#835B40" stopOpacity="0.9" />
                 </linearGradient>
                 <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#f3f4f6" />
@@ -301,7 +301,7 @@ export default function Hero() {
               <path
                 d={lanyardCurvePath}
                 fill="none"
-                stroke="rgba(0, 118, 223, 0.45)"
+                stroke="rgba(131, 91, 64, 0.45)"
                 strokeWidth="14"
                 strokeLinecap="round"
               />
