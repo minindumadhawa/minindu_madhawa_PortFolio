@@ -212,7 +212,7 @@ export default function Contact() {
                     type="email"
                     id="email"
                     required
-                    placeholder="mahinda@example.com"
+                    placeholder="mahinda@gmail.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
@@ -236,7 +236,7 @@ export default function Contact() {
                   id="message"
                   rows="4"
                   required
-                  placeholder="Hi Mahinda, I would like to discuss..."
+                  placeholder="Hi Minindu, I would like to discuss..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
