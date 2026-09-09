@@ -1,25 +1,34 @@
 import React from 'react';
-import { Cpu, Code2, Server, Database, GitBranch, Terminal, Layers, Cloud, Flame, Webhook, Box, Palette, FileCode } from 'lucide-react';
+import { Cpu, Code2, Server, Database, GitBranch, Terminal, Layers, Cloud, Flame, Webhook, Box, Palette, FileCode, Layout } from 'lucide-react';
 import { Figma } from './SocialIcons';
 import { skillsData } from '../data/portfolioData';
 
-// Helper to render Lucide icon dynamically
+// Dynamic Icon Renderer
 const IconRenderer = ({ iconName }) => {
   const iconMap = {
-    Code2: <Code2 size={18} />,
-    FileCode: <FileCode size={18} />,
-    Palette: <Palette size={18} />,
-    Layers: <Layers size={18} />,
-    Server: <Server size={18} />,
-    Webhook: <Webhook size={18} />,
-    Database: <Database size={18} />,
-    Flame: <Flame size={18} />,
-    GitBranch: <GitBranch size={18} />,
-    Box: <Box size={18} />,
-    Cloud: <Cloud size={18} />,
-    Figma: <Figma size={18} />
+    Code2: <Code2 size={16} />,
+    FileCode: <FileCode size={16} />,
+    Palette: <Palette size={16} />,
+    Layers: <Layers size={16} />,
+    Server: <Server size={16} />,
+    Webhook: <Webhook size={16} />,
+    Database: <Database size={16} />,
+    Flame: <Flame size={16} />,
+    GitBranch: <GitBranch size={16} />,
+    Box: <Box size={16} />,
+    Cloud: <Cloud size={16} />,
+    Figma: <Figma size={16} />,
+    Layout: <Layout size={16} />,
+    Cpu: <Cpu size={16} />
   };
-  return iconMap[iconName] || <Terminal size={18} />;
+  return iconMap[iconName] || <Terminal size={16} />;
+};
+
+// Category Icon Helper
+const CategoryIcon = ({ index }) => {
+  if (index === 0) return <Layout size={22} />;
+  if (index === 1) return <Server size={22} />;
+  return <Cpu size={22} />;
 };
 
 export default function Skills() {
@@ -35,27 +44,34 @@ export default function Skills() {
           <p>Technologies, frameworks, and tools I use to bring ideas to life.</p>
         </div>
 
+        {/* Skills Category Grid */}
         <div className="skills-categories-grid">
           {skillsData.map((categoryGroup, index) => (
             <div key={index} className="glass-card skill-category-card">
-              <h3 className="category-title">{categoryGroup.category}</h3>
-              
-              <div className="skills-list">
+              {/* Category Header */}
+              <div className="skill-cat-header">
+                <div className="skill-cat-icon">
+                  <CategoryIcon index={index} />
+                </div>
+                <div className="skill-cat-info">
+                  <h3>{categoryGroup.category}</h3>
+                  <span className="skill-cat-tag">{categoryGroup.skills.length} Stack Items</span>
+                </div>
+              </div>
+
+              {/* Skills Badges Grid */}
+              <div className="skills-badges-grid">
                 {categoryGroup.skills.map((skill, idx) => (
-                  <div key={idx} className="skill-item">
-                    <div className="skill-header">
-                      <div className="skill-name-wrap">
-                        <span className="skill-icon"><IconRenderer iconName={skill.icon} /></span>
-                        <span className="skill-name">{skill.name}</span>
-                      </div>
-                      <span className="skill-percentage">{skill.level}%</span>
+                  <div key={idx} className="skill-badge-card">
+                    <div className="skill-badge-left">
+                      <span className="skill-badge-icon">
+                        <IconRenderer iconName={skill.icon} />
+                      </span>
+                      <span className="skill-badge-name">{skill.name}</span>
                     </div>
 
-                    <div className="progress-bar-track">
-                      <div 
-                        className="progress-bar-fill"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
+                    <div className="skill-badge-right">
+                      <span className="skill-level-pill">{skill.level}%</span>
                     </div>
                   </div>
                 ))}
