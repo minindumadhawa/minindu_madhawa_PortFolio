@@ -1,0 +1,476 @@
+/* Futuristic Circuit Tech Stack Skills Section */
+
+.skills-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header & Controls */
+.skills-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.skills-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.skills-view-btn.active,
+.skills-view-btn:hover {
+  background: var(--action-color);
+  color: #ffffff;
+  border-color: var(--action-color);
+  box-shadow: 0 4px 15px rgba(131, 91, 64, 0.35);
+}
+
+/* Main Circuit Frame Container */
+.circuit-canvas-container {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  min-height: 620px;
+  border-radius: 28px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), 0 0 40px rgba(131, 91, 64, 0.08);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* Background Glowing Particle Orbs */
+.circuit-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  animation: pulseGlow 6s ease-in-out infinite alternate;
+}
+
+.circuit-glow-1 {
+  width: 350px;
+  height: 350px;
+  background: rgba(131, 91, 64, 0.25);
+  top: -50px;
+  left: -50px;
+}
+
+.circuit-glow-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(211, 201, 192, 0.18);
+  bottom: -80px;
+  right: -80px;
+}
+
+.circuit-glow-center {
+  width: 300px;
+  height: 300px;
+  background: rgba(131, 91, 64, 0.2);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Center Tech Hub Badge */
+.central-tech-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.central-hub-card {
+  padding: 1.25rem 2.25rem;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--action-border);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(131, 91, 64, 0.25);
+  text-align: center;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.central-hub-card:hover {
+  transform: scale(1.05);
+  border-color: var(--action-color);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5), 0 0 35px rgba(131, 91, 64, 0.4);
+}
+
+.central-hub-tag {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--action-color);
+}
+
+.central-hub-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.central-hub-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* Hex Pattern Grid Floor inside central hub */
+.central-grid-pattern {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(60deg) scale(1.4);
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background-image: radial-gradient(circle, var(--action-border) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* SVG Circuit Canvas Layer */
+.svg-circuit-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.circuit-path-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.circuit-path-glow {
+  fill: none;
+  stroke: var(--action-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.15;
+  transition: all 0.3s ease;
+}
+
+.circuit-path-pulse {
+  fill: none;
+  stroke: var(--action-color);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 8 16;
+  animation: circuitFlow 3s linear infinite;
+  opacity: 0.6;
+}
+
+.circuit-path-active {
+  stroke: var(--action-color) !important;
+  stroke-width: 4 !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 10px rgba(131, 91, 64, 0.8));
+}
+
+@keyframes circuitFlow {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Skill Nodes Grid (3 Left, 3 Right) */
+.circuit-nodes-grid {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 4rem;
+  padding: 1rem 0;
+}
+
+.circuit-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.circuit-column.right {
+  align-items: flex-end;
+}
+
+.circuit-column.left {
+  align-items: flex-start;
+}
+
+/* Individual Skill Node Card */
+.skill-node-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 380px;
+  width: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.circuit-column.right .skill-node-card {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.skill-node-card:hover,
+.skill-node-card.active {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--action-color);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35), 0 0 25px rgba(131, 91, 64, 0.3);
+  background: var(--bg-card-hover);
+}
+
+/* Glowing Circular Ring Meter */
+.node-circle-meter {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 5;
+  opacity: 0.4;
+}
+
+.circle-progress {
+  fill: none;
+  stroke: var(--action-color);
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 0 6px rgba(131, 91, 64, 0.6));
+}
+
+.node-center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.node-percent {
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.node-icon-inner {
+  color: var(--action-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Node Text & Stack Pills */
+.node-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.node-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.node-subtext {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.node-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.circuit-column.right .node-tech-pills {
+  justify-content: flex-end;
+}
+
+.mini-tech-pill {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--action-light);
+  border: 1px solid var(--action-border);
+  color: var(--action-color);
+}
+
+/* Bottom Glass Social Bar (Matches Image Dock) */
+.circuit-bottom-dock {
+  margin-top: 2rem;
+  z-index: 5;
+}
+
+.dock-glass-pill {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6rem 1.75rem;
+  border-radius: var(--radius-full);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dock-link {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.dock-link:hover {
+  color: var(--action-color);
+  transform: translateY(-2px);
+}
+
+/* Responsive Scaling for Desktop to Mobile */
+@media (max-width: 1024px) {
+  .circuit-canvas-container {
+    min-height: auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .circuit-nodes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .circuit-column.right {
+    align-items: flex-start;
+  }
+
+  .circuit-column.right .skill-node-card {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .circuit-column.right .node-tech-pills {
+    justify-content: flex-start;
+  }
+
+  .skill-node-card {
+    max-width: 100%;
+  }
+
+  .central-tech-hub {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-bottom: 2rem;
+  }
+
+  .svg-circuit-canvas {
+    display: none; /* Hide background SVG lines on small mobile screens for clean responsive layout */
+  }
+}
+
+@media (max-width: 640px) {
+  .central-hub-title {
+    font-size: 1.2rem;
+  }
+  .node-circle-meter {
+    width: 60px;
+    height: 60px;
+  }
+  .node-title {
+    font-size: 0.95rem;
+  }
+}
