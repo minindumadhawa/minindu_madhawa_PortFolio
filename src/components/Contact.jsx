@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Copy, Check, MessageSquare, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Copy, Check, MessageSquare, ExternalLink, AlertCircle } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
 export default function Contact() {
@@ -7,6 +7,7 @@ export default function Contact() {
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
 
   const handleCopyEmail = (e) => {
@@ -56,6 +57,7 @@ export default function Contact() {
     }
 
     setIsSubmitting(true);
+    setErrorMsg('');
     setLastSubmitTime(now);
 
     try {
@@ -68,26 +70,27 @@ export default function Contact() {
         body: JSON.stringify({
           name: trimmedName,
           email: trimmedEmail,
-          subject: trimmedSubject || 'New Portfolio Contact Message',
+          _replyto: trimmedEmail,
+          _subject: trimmedSubject ? `Portfolio: ${trimmedSubject}` : `New Message from ${trimmedName}`,
           message: trimmedMessage,
           _captcha: 'false',
           _template: 'table'
         })
       });
 
-      if (response.ok) {
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.success !== "false") {
         setSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '', _gotcha: '' });
-        setTimeout(() => setSubmitted(false), 6000);
+        setTimeout(() => setSubmitted(false), 8000);
       } else {
-        setSubmitted(true);
-        setFormData({ name: '', email: '', subject: '', message: '', _gotcha: '' });
-        setTimeout(() => setSubmitted(false), 6000);
+        throw new Error(data.message || 'Error sending message via server.');
       }
     } catch (error) {
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '', _gotcha: '' });
-      setTimeout(() => setSubmitted(false), 6000);
+      console.error('Contact submit error:', error);
+      setErrorMsg('Failed to send message automatically. Please try again or click the email link above.');
+      setTimeout(() => setErrorMsg(''), 8000);
     } finally {
       setIsSubmitting(false);
     }
@@ -189,7 +192,14 @@ export default function Contact() {
               {submitted && (
                 <div className="form-success-banner">
                   <Check size={20} />
-                  <span>Thank you! Your message has been sent successfully.</span>
+                  <span>Thank you! Your message has been sent directly to {personalData.email}.</span>
+                </div>
+              )}
+
+              {errorMsg && (
+                <div className="form-error-banner">
+                  <AlertCircle size={20} />
+                  <span>{errorMsg}</span>
                 </div>
               )}
 

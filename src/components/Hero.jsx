@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Mail, Download, Sparkles, CheckCircle2, Move, Cpu, QrCode, Code2, Terminal, Globe, Layers, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Mail, Sparkles, CheckCircle2, Move, Cpu, QrCode, Code2, Terminal, Globe, Layers, Zap, ShieldCheck } from 'lucide-react';
 import { Github, Linkedin, Twitter } from './SocialIcons';
 import { personalData } from '../data/portfolioData';
 
@@ -242,19 +242,6 @@ export default function Hero() {
               </a>
               <a href="#contact" className="btn btn-secondary">
                 <span>Contact Me</span>
-              </a>
-              <a 
-                href={personalData.resumeUrl} 
-                className="btn btn-secondary download-cv-btn"
-                onClick={(e) => {
-                  if (personalData.resumeUrl === '#') {
-                    e.preventDefault();
-                    alert('Resume download triggered! Replace resumeUrl in src/data/portfolioData.js with your PDF link.');
-                  }
-                }}
-              >
-                <Download size={16} />
-                <span>Resume</span>
               </a>
             </div>
 
