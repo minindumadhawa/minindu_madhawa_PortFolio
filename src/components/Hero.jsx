@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Mail, Sparkles, CheckCircle2, Move, Cpu, QrCode, Code2, Terminal, Globe, Layers, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Mail, Sparkles, CheckCircle2, Move, Cpu, QrCode, Code2, Terminal, Globe, Layers, Zap, ShieldCheck, Award, BadgeCheck } from 'lucide-react';
 import { Github, Linkedin, Twitter } from './SocialIcons';
 import { personalData } from '../data/portfolioData';
 
@@ -59,7 +59,7 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, currentRoleIndex]);
 
-  // Cancel spring simulation if active
+  // Cancel spring animation if active
   const cancelSpringAnimation = () => {
     if (animFrameRef.current) {
       cancelAnimationFrame(animFrameRef.current);
@@ -263,7 +263,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Hanging Flexible Lanyard Ribbon with White Curved Outer Rectangle Polaroid Card */}
+          {/* Right Column: Classic Vintage Hanging Identity Pass Card */}
           <div className="hero-idcard-wrapper">
             {/* Dynamic Flexible SVG Lanyard Ribbon Canvas */}
             <svg className="svg-lanyard-canvas" viewBox="0 -160 320 600">
@@ -271,12 +271,13 @@ export default function Hero() {
                 <linearGradient id="lanyardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#835B40" stopOpacity="0.95" />
                   <stop offset="50%" stopColor="#A47453" stopOpacity="0.85" />
-                  <stop offset="100%" stopColor="#835B40" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#6E4932" stopOpacity="0.9" />
                 </linearGradient>
-                <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#f3f4f6" />
-                  <stop offset="50%" stopColor="#9ca3af" />
-                  <stop offset="100%" stopColor="#4b5563" />
+                <linearGradient id="brassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F5D77F" />
+                  <stop offset="35%" stopColor="#D4AF37" />
+                  <stop offset="70%" stopColor="#AA7C11" />
+                  <stop offset="100%" stopColor="#6A4E0B" />
                 </linearGradient>
                 <filter id="lanyardGlow" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="3" result="blur" />
@@ -288,7 +289,7 @@ export default function Hero() {
               <path
                 d={lanyardCurvePath}
                 fill="none"
-                stroke="rgba(131, 91, 64, 0.45)"
+                stroke="rgba(131, 91, 64, 0.35)"
                 strokeWidth="14"
                 strokeLinecap="round"
               />
@@ -303,26 +304,26 @@ export default function Hero() {
                 filter="url(#lanyardGlow)"
               />
 
-              {/* Stitching pattern line */}
+              {/* Classic Stitching pattern line */}
               <path
                 d={lanyardCurvePath}
                 fill="none"
-                stroke="rgba(255, 255, 255, 0.5)"
+                stroke="rgba(245, 239, 230, 0.6)"
                 strokeWidth="1.5"
                 strokeDasharray="4 3"
                 strokeLinecap="round"
               />
 
-              {/* Metallic Clip Hook attached directly onto the top hole of the white card */}
+              {/* Brass Vintage Clip Hook attached to top hole */}
               <g
                 style={{
                   transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 12}px, 0)`,
                   transformOrigin: '160px 0px'
                 }}
               >
-                <rect x="150" y="-12" width="20" height="12" rx="3" fill="url(#metalGradient)" stroke="#374151" strokeWidth="1" />
-                <path d="M 153 0 L 167 0 L 164 14 A 4 4 0 0 1 156 14 Z" fill="url(#metalGradient)" stroke="#1f2937" strokeWidth="1.2" />
-                <circle cx="160" cy="12" r="5" fill="none" stroke="#d1d5db" strokeWidth="2.5" />
+                <rect x="150" y="-12" width="20" height="12" rx="3" fill="url(#brassGradient)" stroke="#4A3508" strokeWidth="1" />
+                <path d="M 153 0 L 167 0 L 164 14 A 4 4 0 0 1 156 14 Z" fill="url(#brassGradient)" stroke="#3A2805" strokeWidth="1.2" />
+                <circle cx="160" cy="12" r="5.5" fill="none" stroke="url(#brassGradient)" strokeWidth="2.5" />
               </g>
             </svg>
 
@@ -337,7 +338,7 @@ export default function Hero() {
               <span>{isDragging ? 'Dragging...' : 'Pull & Drag Me!'}</span>
             </div>
 
-            {/* Hanging White Curved Outer Rectangle Polaroid Card attached to Lanyard */}
+            {/* Hanging Vintage Identity Pass Card attached to Lanyard */}
             <div 
               className={`hanging-avatar-container ${isDragging || isSpringing ? 'is-dragging' : 'animate-swing'}`}
               onMouseDown={handleMouseDown}
@@ -349,47 +350,71 @@ export default function Hero() {
             >
               <div className="avatar-glow-ring"></div>
 
-              {/* Double Layered White Curved Outer Rectangle Pass Card */}
-              <div className="white-curved-outer-card">
-                <div className="white-card-hole"></div>
-
-                {/* Pass Header Tag */}
-                <div className="white-card-header">
-                  <div className="white-card-pass-tag">
-                    <Cpu size={13} className="white-card-cpu-icon" />
-                    <span>DEV.PASS // 2026</span>
-                  </div>
-                  <div className="white-card-chip"></div>
+              {/* Redesigned Classic Vintage Pass Card */}
+              <div className="classic-vintage-id-card">
+                {/* Metallic Brass Eyelet Hole Header */}
+                <div className="classic-card-eyelet-wrap">
+                  <div className="classic-brass-eyelet"></div>
                 </div>
 
-                {/* Inner Photo Frame */}
-                <div className="avatar-image-container">
-                  <img src="/minindu_profile.jpg" alt={personalData.name} className="hero-avatar-img" draggable="false" />
+                {/* Classic Header Title & Security Guilloche Line */}
+                <div className="classic-card-header">
+                  <div className="classic-header-branding">
+                    <Award size={14} className="classic-header-icon" />
+                    <span>CREATIVE IDENTITY PASS</span>
+                  </div>
+                  <span className="classic-edition-tag">EST. 2026</span>
+                </div>
+
+                <div className="classic-guilloche-divider"></div>
+
+                {/* Inner Photo Frame & Rubber Stamp Overlay */}
+                <div className="classic-photo-wrapper">
+                  <div className="classic-photo-frame">
+                    <img src="/minindu_profile.jpg" alt={personalData.name} className="classic-avatar-img" draggable="false" />
+                    <div className="classic-photo-vignette"></div>
+                  </div>
                   
-                  {/* Active Status Badge */}
-                  <div className="avatar-status-pill">
-                    <span className="avatar-status-dot"></span>
-                    <span>ACTIVE</span>
+                  {/* Vintage Rubber Stamp Overlay */}
+                  <div className="classic-rubber-stamp">
+                    <BadgeCheck size={14} />
+                    <span>VERIFIED</span>
+                  </div>
+
+                  {/* Active Status Ribbon Pill */}
+                  <div className="classic-status-pill">
+                    <span className="classic-status-dot"></span>
+                    <span>ACTIVE PASS</span>
                   </div>
                 </div>
 
                 {/* Detailed Card Info Section */}
-                <div className="white-card-details">
-                  <div className="white-card-user-info">
-                    <h3 className="white-card-name">{personalData.name}</h3>
-                    <p className="white-card-role">Full-Stack Software Engineer</p>
+                <div className="classic-card-details">
+                  <div className="classic-card-user-info">
+                    <h3 className="classic-card-name">{personalData.name}</h3>
+                    <p className="classic-card-role">Full-Stack Engineer & Architect</p>
                   </div>
 
-                  <div className="white-card-meta-row">
-                    <div className="white-meta-col">
-                      <span className="white-meta-label">ID NO</span>
-                      <span className="white-meta-val">#MM-9407</span>
+                  <div className="classic-card-meta-row">
+                    <div className="classic-meta-col">
+                      <span className="classic-meta-label">PASS SERIAL NO.</span>
+                      <span className="classic-meta-val">#MM-9407-PASS</span>
                     </div>
-                    <div className="white-meta-col">
-                      <span className="white-meta-label">PASS CODE</span>
-                      <span className="white-meta-val">PASS-8820</span>
+                    <div className="classic-meta-col text-right">
+                      <span className="classic-meta-label">SECURITY CODE</span>
+                      <span className="classic-meta-val">AUTHENTIC</span>
                     </div>
-                    <div className="white-card-qr" title="Security Verification Barcode">
+                  </div>
+
+                  <div className="classic-barcode-footer">
+                    <div className="classic-barcode-lines">
+                      <span className="bar b-wide"></span><span className="bar b-narrow"></span><span className="bar b-med"></span>
+                      <span className="bar b-wide"></span><span className="bar b-thin"></span><span className="bar b-wide"></span>
+                      <span className="bar b-med"></span><span className="bar b-thin"></span><span className="bar b-wide"></span>
+                      <span className="bar b-narrow"></span><span className="bar b-wide"></span><span className="bar b-med"></span>
+                      <span className="bar b-thin"></span><span className="bar b-wide"></span><span className="bar b-narrow"></span>
+                    </div>
+                    <div className="classic-qr-box" title="Security Verification Barcode">
                       <QrCode size={24} />
                     </div>
                   </div>
