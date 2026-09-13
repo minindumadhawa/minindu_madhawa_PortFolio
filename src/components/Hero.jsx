@@ -402,7 +402,7 @@ export default function Hero() {
                   className="classic-vintage-id-card-inner"
                   style={{
                     transform: `rotateX(0deg) rotateY(${(isFlipped ? 180 : 0) + spinRotation}deg)`,
-                    transition: 'transform 3.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                    transition: 'transform 5.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                   }}
                 >
 
