@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Copy, Check, MessageSquare, ExternalLink, AlertCircle } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
+import { motion } from 'framer-motion';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', _gotcha: '' });
@@ -99,18 +113,30 @@ export default function Contact() {
   return (
     <section id="contact" className="section contact-section">
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
           <div className="badge">
             <MessageSquare size={16} />
             <span>Get In Touch</span>
           </div>
           <h2>Let's Build Something <span className="gradient-text">Great Together</span></h2>
           <p>Have a project in mind, a job opportunity, or just want to connect? Send me a message!</p>
-        </div>
+        </motion.div>
 
-        <div className="contact-grid">
+        <motion.div 
+          className="contact-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
           {/* Left: Contact Info Card */}
-          <div className="glass-card contact-info-card">
+          <motion.div variants={fadeUp} className="glass-card contact-info-card">
             <h3 className="contact-card-title">Contact Details</h3>
             <p className="contact-card-text">
               Feel free to reach out via email, phone, or the contact form. I typically respond within 24 hours.
@@ -173,10 +199,10 @@ export default function Contact() {
                 <p className="availability-desc">Open for freelance projects & full-time roles.</p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: Contact Form */}
-          <div className="glass-card contact-form-card">
+          <motion.div variants={fadeUp} className="glass-card contact-form-card">
             <form onSubmit={handleSubmit} className="contact-form">
               {/* Hidden Honeypot Input for Anti-Spam Bot Protection */}
               <input
@@ -267,8 +293,8 @@ export default function Contact() {
                 )}
               </button>
             </form>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

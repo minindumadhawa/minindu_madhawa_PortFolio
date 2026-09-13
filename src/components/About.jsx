@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import { User, Code2, Rocket, ShieldCheck, MapPin, Mail, GraduationCap, Globe, Copy, Check, ArrowRight } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
+import { motion } from 'framer-motion';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 }
+  }
+};
 
 export default function About() {
   const [copied, setCopied] = useState(false);
@@ -32,18 +46,30 @@ export default function About() {
   return (
     <section id="about" className="section about-section">
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
           <div className="badge">
             <User size={16} />
             <span>About Me</span>
           </div>
           <h2>Transforming Complex Ideas Into <span className="gradient-text">Elegant Code</span></h2>
           <p>Passionate about crafting fast, accessible, and human-centric web applications.</p>
-        </div>
+        </motion.div>
 
-        <div className="about-grid">
+        <motion.div 
+          className="about-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
           {/* Bio Story Card */}
-          <div className="glass-card about-story-card">
+          <motion.div variants={fadeUp} className="glass-card about-story-card">
             <div className="story-card-header">
               <h3 className="story-title">Engineering Narrative</h3>
               <span className="story-tag">Full-Stack Engineer</span>
@@ -112,21 +138,21 @@ export default function About() {
                 <ArrowRight size={16} />
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Highlights Cards Column */}
           <div className="about-highlights-col">
             {highlights.map((item, idx) => (
-              <div key={idx} className="glass-card highlight-card">
+              <motion.div variants={fadeUp} key={idx} className="glass-card highlight-card">
                 <div className="highlight-icon-box">{item.icon}</div>
                 <div className="highlight-content">
                   <h4 className="highlight-card-title">{item.title}</h4>
                   <p className="highlight-card-desc">{item.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,6 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Mail, Sparkles, CheckCircle2, Move, Cpu, QrCode, Code2, Terminal, Globe, Layers, Zap, ShieldCheck, Award, BadgeCheck } from 'lucide-react';
 import { Github, Linkedin, Twitter } from './SocialIcons';
 import { personalData } from '../data/portfolioData';
+import { motion } from 'framer-motion';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
+};
 
 // Geometric Pattern Component for the ID Card Back
 const GeometricPattern = () => (
@@ -251,37 +265,42 @@ export default function Hero() {
       <div className="container hero-container-wrap">
         <div className="hero-container">
           {/* Left Column: Text & CTAs */}
-          <div className="hero-content">
-            <div className="badge hero-badge">
+          <motion.div 
+            className="hero-content"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeUp} className="badge hero-badge">
               <span className="live-radar-dot"></span>
               <Sparkles size={15} />
               <span>Available for New Projects</span>
-            </div>
+            </motion.div>
 
-            <h1 className="hero-title">
+            <motion.h1 variants={fadeUp} className="hero-title">
               Hello, I'm <br />
               <span className="gradient-text">{personalData.name}</span>
-            </h1>
+            </motion.h1>
 
-            <div className="hero-typewriter">
+            <motion.div variants={fadeUp} className="hero-typewriter">
               <span className="typewriter-prefix">I am a </span>
               <span className="typewriter-text">{displayedText}</span>
               <span className="typewriter-cursor">|</span>
-            </div>
+            </motion.div>
 
-            <p className="hero-bio">{personalData.bio}</p>
+            <motion.p variants={fadeUp} className="hero-bio">{personalData.bio}</motion.p>
 
             {/* Interactive Tech Pills */}
-            <div className="hero-tech-pills">
+            <motion.div variants={fadeUp} className="hero-tech-pills">
               <span className="tech-pill"><Code2 size={13} /> React</span>
               <span className="tech-pill"><Terminal size={13} /> Node.js</span>
               <span className="tech-pill"><Globe size={13} /> Next.js</span>
               <span className="tech-pill"><Layers size={13} /> TypeScript</span>
               <span className="tech-pill"><Cpu size={13} /> Tailwind</span>
-            </div>
+            </motion.div>
 
             {/* Action Buttons */}
-            <div className="hero-ctas">
+            <motion.div variants={fadeUp} className="hero-ctas">
               <a href="#projects" className="btn btn-primary hero-btn-main">
                 <span>View Projects</span>
                 <ArrowRight size={16} className="btn-arrow-icon" />
@@ -289,10 +308,10 @@ export default function Hero() {
               <a href="#contact" className="btn btn-secondary">
                 <span>Contact Me</span>
               </a>
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="hero-socials">
+            <motion.div variants={fadeUp} className="hero-socials">
               <span className="socials-label">Connect:</span>
               <a href={personalData.socials.github} target="_blank" rel="noopener noreferrer" className="social-icon-btn" title="GitHub">
                 <Github size={20} />
@@ -306,11 +325,16 @@ export default function Hero() {
               <a href={personalData.socials.email} className="social-icon-btn" title="Email">
                 <Mail size={20} />
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Column: Classic Vintage Hanging Identity Pass Card */}
-          <div className="hero-idcard-wrapper">
+          <motion.div 
+            className="hero-idcard-wrapper"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+          >
             {/* Dynamic Flexible SVG Lanyard Ribbon Canvas */}
             <svg className="svg-lanyard-canvas" viewBox="0 -160 320 600">
               <defs>
@@ -531,11 +555,16 @@ export default function Hero() {
                 <p className="badge-subtitle">Modern Web</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Hero Bottom Live Impact Metrics Banner */}
-        <div className="hero-metrics-bar glass-card">
+        <motion.div 
+          className="hero-metrics-bar glass-card"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
           <div className="metric-item">
             <div className="metric-icon-wrap"><Zap size={20} /></div>
             <div>
@@ -567,7 +596,7 @@ export default function Hero() {
               <p className="metric-label">Remote Ready</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

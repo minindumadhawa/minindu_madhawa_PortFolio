@@ -1,6 +1,20 @@
 import React from 'react';
 import { Sparkles, Layout, Smartphone, Cpu, Zap, ArrowUpRight, Globe, Layers, Palette, Server } from 'lucide-react';
 import { servicesData } from '../data/portfolioData';
+import { motion } from 'framer-motion';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 const IconRenderer = ({ iconName }) => {
   const map = {
@@ -20,18 +34,30 @@ export default function Services() {
   return (
     <section id="services" className="section services-section">
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
           <div className="badge">
             <Sparkles size={16} />
             <span>Offerings</span>
           </div>
           <h2>Services I <span className="gradient-text">Provide</span></h2>
           <p>Delivering high-quality digital products engineered for scalability, speed, and design precision.</p>
-        </div>
+        </motion.div>
 
-        <div className="services-grid">
+        <motion.div 
+          className="services-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
           {servicesData.map((service, index) => (
-            <div key={index} className="glass-card service-card">
+            <motion.div variants={fadeUp} key={index} className="glass-card service-card">
               <div className="service-icon-box">
                 <IconRenderer iconName={service.icon} />
               </div>
@@ -42,9 +68,9 @@ export default function Services() {
                 <span>Inquire Service</span>
                 <ArrowUpRight size={16} className="service-link-arrow" />
               </a>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

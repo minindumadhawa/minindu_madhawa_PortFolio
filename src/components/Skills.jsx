@@ -2,7 +2,21 @@ import React, { useState } from 'react';
 import { Cpu, Code2, Server, Database, GitBranch, Terminal, Layers, Cloud, Flame, Webhook, Box, Palette, FileCode, Layout, Smartphone, Zap, Sparkles, Sliders, Globe } from 'lucide-react';
 import { Github, Linkedin, Twitter, Figma } from './SocialIcons';
 import { skillsData, personalData } from '../data/portfolioData';
+import { motion } from 'framer-motion';
 import './Skills.css';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 // Dynamic Icon Component Helper
 const IconRenderer = ({ iconName, size = 18 }) => {
@@ -103,7 +117,13 @@ export default function Skills() {
     <section id="skills" className="section skills-section">
       <div className="container">
         {/* Section Header */}
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
           <div className="badge">
             <Cpu size={16} />
             <span>Tech Stack</span>
@@ -128,7 +148,7 @@ export default function Skills() {
               <span>Category Stack View</span>
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* CONDITION 1: Futuristic Circuit Diagram View (User Reference Image Design) */}
         {viewMode === 'circuit' && (
@@ -330,9 +350,15 @@ export default function Skills() {
 
         {/* CONDITION 2: Traditional Category Grid Stack View */}
         {viewMode === 'grid' && (
-          <div className="skills-categories-grid animate-fade-in">
+          <motion.div 
+            className="skills-categories-grid animate-fade-in"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+          >
             {skillsData.map((categoryGroup, index) => (
-              <div key={index} className="glass-card skill-category-card">
+              <motion.div variants={fadeUp} key={index} className="glass-card skill-category-card">
                 {/* Category Header */}
                 <div className="skill-cat-header">
                   <div className="skill-cat-icon">
@@ -361,9 +387,9 @@ export default function Skills() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

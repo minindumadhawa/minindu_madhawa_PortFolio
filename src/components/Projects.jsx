@@ -3,6 +3,20 @@ import { FolderGit2, ArrowRight } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import DesktopMockup from './DesktopMockup';
 import ProjectModal from './ProjectModal';
+import { motion } from 'framer-motion';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
 
 export default function Projects({ onViewAllProjects }) {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -13,19 +27,32 @@ export default function Projects({ onViewAllProjects }) {
   return (
     <section id="projects" className="section projects-section">
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
           <div className="badge">
             <FolderGit2 size={16} />
             <span>Featured Work</span>
           </div>
           <h2>Explore My <span className="gradient-text">Featured Projects</span></h2>
           <p>A selection of main web applications, platforms, and software products.</p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid (Main 3 Projects) */}
-        <div className="projects-grid">
+        <motion.div 
+          className="projects-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
           {featuredProjects.map((project) => (
-            <div 
+            <motion.div 
+              variants={fadeUp}
               key={project.id} 
               className="glass-card project-card"
               onClick={() => setSelectedProject(project)}
@@ -45,17 +72,23 @@ export default function Projects({ onViewAllProjects }) {
                   {project.title}
                 </h3>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View All Projects CTA */}
-        <div className="view-all-projects-wrapper">
+        <motion.div 
+          className="view-all-projects-wrapper"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
           <button onClick={onViewAllProjects} className="btn btn-primary view-all-btn">
             <span>Recent Projects</span>
             <ArrowRight size={18} />
           </button>
-        </div>
+        </motion.div>
       </div>
 
       {/* Project Full Details Modal */}
