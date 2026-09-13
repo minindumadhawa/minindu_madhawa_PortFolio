@@ -519,9 +519,145 @@
 }
 
 /* Classic Vintage Identity Pass Card Frame */
-.classic-vintage-id-card {
-  position: relative;
+.classic-vintage-id-card-scene {
   width: 320px;
+  perspective: 1200px;
+  user-select: none;
+}
+
+.classic-vintage-id-card-inner {
+  position: relative;
+  width: 100%;
+  height: 480px; /* Fixed height to support absolute positioning of faces */
+  transform-style: preserve-3d;
+}
+
+.classic-vintage-id-card-front,
+.classic-vintage-id-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.classic-vintage-id-card-front {
+  transform: rotateY(0deg);
+}
+
+.classic-vintage-id-card-back {
+  transform: rotateY(180deg);
+  background: #f4f1eb;
+  border: 2px solid #bba391;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Back Pattern Design */
+.idcard-pattern-top,
+.idcard-pattern-bottom {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  overflow: hidden;
+}
+
+.idcard-pattern-top {
+  border-bottom: 2px solid #d56a2b;
+}
+
+.idcard-pattern-bottom {
+  border-top: 2px solid #d56a2b;
+}
+
+.idcard-back-center-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 2;
+}
+
+.back-auth-title {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: #521B0A;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.back-auth-desc {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #4A3E38;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.back-auth-desc strong {
+  font-weight: 800;
+  color: #2C221E;
+}
+
+.back-contact-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #973215;
+  background: rgba(151, 50, 21, 0.1);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.classic-flip-hint-absolute {
+  position: absolute;
+  bottom: 105px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d56a2b;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.classic-flip-hint-absolute:hover {
+  background: #FFF;
+  transform: scale(1.1);
+}
+
+.classic-card-eyelet-wrap-back {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.classic-vintage-id-card {
+  width: 320px;
+  height: 480px;
   background: #C8BAAE;
   background: linear-gradient(145deg, #D6C8BC 0%, #C8BAAE 100%);
   border-radius: 20px;
@@ -534,7 +670,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: box-shadow var(--transition-normal);
   color: #2A211D;
 }
 
