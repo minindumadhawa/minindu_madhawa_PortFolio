@@ -8,28 +8,28 @@ const GeometricPattern = () => (
   <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>
     <defs>
       <pattern id="geo-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-        <rect width="60" height="60" fill="#F4F1EC"/>
+        <rect width="60" height="60" fill="#F4F1EC" />
         <path d="M30 0L60 30L30 60L0 30Z" fill="#D56A2B" />
         <path d="M30 6L54 30L30 54L6 30Z" fill="#973215" />
         <path d="M30 12L48 30L30 48L12 30Z" fill="#E69C24" />
         <path d="M30 18L33.5 26.5L42 30L33.5 33.5L30 42L26.5 33.5L18 30L26.5 26.5Z" fill="#521B0A" />
         <circle cx="30" cy="30" r="4" fill="#F4F1EC" />
-        
+
         {/* Corners */}
-        <path d="M0 0 L15 0 L0 15 Z" fill="#D56A2B"/>
-        <path d="M60 0 L45 0 L60 15 Z" fill="#D56A2B"/>
-        <path d="M0 60 L15 60 L0 45 Z" fill="#D56A2B"/>
-        <path d="M60 60 L45 60 L60 45 Z" fill="#D56A2B"/>
+        <path d="M0 0 L15 0 L0 15 Z" fill="#D56A2B" />
+        <path d="M60 0 L45 0 L60 15 Z" fill="#D56A2B" />
+        <path d="M0 60 L15 60 L0 45 Z" fill="#D56A2B" />
+        <path d="M60 60 L45 60 L60 45 Z" fill="#D56A2B" />
 
-        <path d="M0 0 L10 0 L0 10 Z" fill="#973215"/>
-        <path d="M60 0 L50 0 L60 10 Z" fill="#973215"/>
-        <path d="M0 60 L10 60 L0 50 Z" fill="#973215"/>
-        <path d="M60 60 L50 60 L60 50 Z" fill="#973215"/>
+        <path d="M0 0 L10 0 L0 10 Z" fill="#973215" />
+        <path d="M60 0 L50 0 L60 10 Z" fill="#973215" />
+        <path d="M0 60 L10 60 L0 50 Z" fill="#973215" />
+        <path d="M60 60 L50 60 L60 50 Z" fill="#973215" />
 
-        <path d="M30 0 L38 0 L30 8 L22 0 Z" fill="#F4F1EC"/>
-        <path d="M30 60 L38 60 L30 52 L22 60 Z" fill="#F4F1EC"/>
-        <path d="M0 30 L0 22 L8 30 L0 38 Z" fill="#F4F1EC"/>
-        <path d="M60 30 L60 22 L52 30 L60 38 Z" fill="#F4F1EC"/>
+        <path d="M30 0 L38 0 L30 8 L22 0 Z" fill="#F4F1EC" />
+        <path d="M30 60 L38 60 L30 52 L22 60 Z" fill="#F4F1EC" />
+        <path d="M0 30 L0 22 L8 30 L0 38 Z" fill="#F4F1EC" />
+        <path d="M60 30 L60 22 L52 30 L60 38 Z" fill="#F4F1EC" />
       </pattern>
     </defs>
     <rect width="100%" height="100%" fill="url(#geo-pattern)" />
@@ -188,7 +188,7 @@ export default function Hero() {
     const handleEnd = () => {
       if (!isDragging) return;
       setIsDragging(false);
-      
+
       const draggedX = posRef.current.x;
       // If dragged far enough, complete a full 360 rotation to land back on the front
       if (draggedX > 150) {
@@ -234,8 +234,8 @@ export default function Hero() {
   const rotationAngle = dragOffset.x * 0.08;
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       ref={heroRef}
       onMouseMove={handleHeroMouseMove}
       className="section hero-section"
@@ -374,7 +374,7 @@ export default function Hero() {
             </svg>
 
             {/* Drag Tooltip */}
-            <div 
+            <div
               className={`drag-hint-pill ${isDragging ? 'dragging' : ''}`}
               style={{
                 transform: `translate3d(${dragOffset.x}px, ${dragOffset.y - 45}px, 0)`
@@ -385,7 +385,7 @@ export default function Hero() {
             </div>
 
             {/* Hanging Vintage Identity Pass Card attached to Lanyard */}
-            <div 
+            <div
               className={`hanging-avatar-container ${isDragging || isSpringing ? 'is-dragging' : 'animate-swing'}`}
               onMouseDown={handleMouseDown}
               onTouchStart={handleTouchStart}
@@ -398,17 +398,17 @@ export default function Hero() {
 
               {/* Redesigned Classic Vintage Pass Card - 3D Scene */}
               <div className="classic-vintage-id-card-scene">
-                <div 
+                <div
                   className="classic-vintage-id-card-inner"
                   style={{
-                    transform: `rotateX(${isDragging ? -dragOffset.y * 0.15 : 0}deg) rotateY(${(isFlipped ? 180 : 0) + spinRotation + (isDragging ? dragOffset.x * 0.6 : 0)}deg)`,
-                    transition: isDragging ? 'none' : 'transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                    transform: `rotateX(0deg) rotateY(${(isFlipped ? 180 : 0) + spinRotation}deg)`,
+                    transition: 'transform 3.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                   }}
                 >
-                  
+
                   {/* Front Face */}
                   <div className="classic-vintage-id-card classic-vintage-id-card-front">
-                    
+
                     {/* Metallic Brass Eyelet Hole Header */}
                     <div className="classic-card-eyelet-wrap">
                       <div className="classic-brass-eyelet"></div>
@@ -431,7 +431,7 @@ export default function Hero() {
                         <img src="/minindu_profile.jpg" alt={personalData.name} className="classic-avatar-img" draggable="false" />
                         <div className="classic-photo-vignette"></div>
                       </div>
-                      
+
                       {/* Vintage Rubber Stamp Overlay */}
                       <div className="classic-rubber-stamp">
                         <BadgeCheck size={14} />
@@ -480,7 +480,7 @@ export default function Hero() {
 
                   {/* Back Face */}
                   <div className="classic-vintage-id-card classic-vintage-id-card-back">
-                    
+
                     {/* Top Pattern Border */}
                     <div className="idcard-pattern-top">
                       <GeometricPattern />
@@ -505,7 +505,7 @@ export default function Hero() {
                     <div className="idcard-pattern-bottom">
                       <GeometricPattern />
                     </div>
-                    
+
                     {/* Eyelet hole cover to show through from back correctly */}
                     <div className="classic-card-eyelet-wrap-back">
                       <div className="classic-brass-eyelet"></div>
