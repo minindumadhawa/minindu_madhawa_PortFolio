@@ -407,7 +407,7 @@ export default function Hero() {
                 >
                   
                   {/* Front Face */}
-                  <div className="classic-vintage-id-card classic-vintage-id-card-front" onClick={(e) => { e.stopPropagation(); setIsFlipped(true); }}>
+                  <div className="classic-vintage-id-card classic-vintage-id-card-front">
                     
                     {/* Metallic Brass Eyelet Hole Header */}
                     <div className="classic-card-eyelet-wrap">
@@ -471,7 +471,7 @@ export default function Hero() {
                           <span className="bar b-narrow"></span><span className="bar b-wide"></span><span className="bar b-med"></span>
                           <span className="bar b-thin"></span><span className="bar b-wide"></span><span className="bar b-narrow"></span>
                         </div>
-                        <div className="classic-qr-box" title="Click to Flip" onClick={(e) => { e.stopPropagation(); setIsFlipped(true); }} style={{cursor: 'pointer'}}>
+                        <div className="classic-qr-box" title="Security Verification Barcode">
                           <QrCode size={24} />
                         </div>
                       </div>
@@ -479,7 +479,7 @@ export default function Hero() {
                   </div>
 
                   {/* Back Face */}
-                  <div className="classic-vintage-id-card classic-vintage-id-card-back" onClick={(e) => { e.stopPropagation(); setIsFlipped(false); }}>
+                  <div className="classic-vintage-id-card classic-vintage-id-card-back">
                     
                     {/* Top Pattern Border */}
                     <div className="idcard-pattern-top">
@@ -504,11 +504,6 @@ export default function Hero() {
                     {/* Bottom Pattern Border */}
                     <div className="idcard-pattern-bottom">
                       <GeometricPattern />
-                    </div>
-
-                    {/* Flip hint */}
-                    <div className="classic-flip-hint-absolute" style={{ bottom: '15px', right: '15px' }} onClick={(e) => { e.stopPropagation(); setIsFlipped(false); }}>
-                      <Move size={14} />
                     </div>
                     
                     {/* Eyelet hole cover to show through from back correctly */}
