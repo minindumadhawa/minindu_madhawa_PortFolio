@@ -136,7 +136,11 @@ export default function Contact() {
           variants={staggerContainer}
         >
           {/* Left: Contact Info Card */}
-          <motion.div variants={fadeUp} className="glass-card contact-info-card">
+          <motion.div 
+            variants={fadeUp} 
+            className="glass-card contact-info-card"
+            whileHover={{ scale: 1.01 }}
+          >
             <h3 className="contact-card-title">Contact Details</h3>
             <p className="contact-card-text">
               Feel free to reach out via email, phone, or the contact form. I typically respond within 24 hours.
@@ -202,7 +206,11 @@ export default function Contact() {
           </motion.div>
 
           {/* Right: Contact Form */}
-          <motion.div variants={fadeUp} className="glass-card contact-form-card">
+          <motion.div 
+            variants={fadeUp} 
+            className="glass-card contact-form-card"
+            whileHover={{ scale: 1.01 }}
+          >
             <form onSubmit={handleSubmit} className="contact-form">
               {/* Hidden Honeypot Input for Anti-Spam Bot Protection */}
               <input

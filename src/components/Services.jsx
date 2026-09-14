@@ -57,7 +57,13 @@ export default function Services() {
           variants={staggerContainer}
         >
           {servicesData.map((service, index) => (
-            <motion.div variants={fadeUp} key={index} className="glass-card service-card">
+            <motion.div 
+              variants={fadeUp} 
+              key={index} 
+              className="glass-card service-card"
+              whileHover={{ scale: 1.03, y: -5 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <div className="service-icon-box">
                 <IconRenderer iconName={service.icon} />
               </div>

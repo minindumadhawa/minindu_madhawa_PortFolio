@@ -69,7 +69,11 @@ export default function About() {
           variants={staggerContainer}
         >
           {/* Bio Story Card */}
-          <motion.div variants={fadeUp} className="glass-card about-story-card">
+          <motion.div 
+            variants={fadeUp} 
+            className="glass-card about-story-card"
+            whileHover={{ scale: 1.01 }}
+          >
             <div className="story-card-header">
               <h3 className="story-title">Engineering Narrative</h3>
               <span className="story-tag">Full-Stack Engineer</span>
@@ -143,7 +147,12 @@ export default function About() {
           {/* Highlights Cards Column */}
           <div className="about-highlights-col">
             {highlights.map((item, idx) => (
-              <motion.div variants={fadeUp} key={idx} className="glass-card highlight-card">
+              <motion.div 
+                variants={fadeUp} 
+                key={idx} 
+                className="glass-card highlight-card"
+                whileHover={{ scale: 1.03, y: -5 }}
+              >
                 <div className="highlight-icon-box">{item.icon}</div>
                 <div className="highlight-content">
                   <h4 className="highlight-card-title">{item.title}</h4>

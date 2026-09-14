@@ -56,6 +56,8 @@ export default function Projects({ onViewAllProjects }) {
               key={project.id} 
               className="glass-card project-card"
               onClick={() => setSelectedProject(project)}
+              whileHover={{ scale: 1.02, y: -5 }}
+              whileTap={{ scale: 0.98 }}
             >
               {/* Desktop Mockup Preview */}
               <DesktopMockup
@@ -84,10 +86,15 @@ export default function Projects({ onViewAllProjects }) {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeUp}
         >
-          <button onClick={onViewAllProjects} className="btn btn-primary view-all-btn">
+          <motion.button 
+            onClick={onViewAllProjects} 
+            className="btn btn-primary view-all-btn"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <span>Recent Projects</span>
             <ArrowRight size={18} />
-          </button>
+          </motion.button>
         </motion.div>
       </div>
 

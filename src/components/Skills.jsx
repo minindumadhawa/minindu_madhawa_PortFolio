@@ -358,7 +358,12 @@ export default function Skills() {
             variants={staggerContainer}
           >
             {skillsData.map((categoryGroup, index) => (
-              <motion.div variants={fadeUp} key={index} className="glass-card skill-category-card">
+              <motion.div 
+                variants={fadeUp} 
+                key={index} 
+                className="glass-card skill-category-card"
+                whileHover={{ scale: 1.02 }}
+              >
                 {/* Category Header */}
                 <div className="skill-cat-header">
                   <div className="skill-cat-icon">
